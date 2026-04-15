@@ -30,6 +30,47 @@
 > [!IMPORTANT]
 > You **cannot** deploy to static web hosts, including Netlify, Cloudflare Pages, and GitHub Pages.
 
+### Cloudflare Workers
+
+This repository now includes a Worker entrypoint (`worker.js`) and Wrangler config (`wrangler.toml`) so you can deploy directly to Cloudflare Workers.
+No custom domain is required; the default `*.workers.dev` domain works out of the box.
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Authenticate Wrangler once:
+
+```bash
+npx wrangler login
+```
+
+3. Build check (good for a Git-cloned Worker with a build command):
+
+```bash
+npm run build
+```
+
+You can also run locally with:
+
+```bash
+npm run dev
+```
+
+Or manually deploy from your machine:
+
+```bash
+npm run deploy
+```
+
+Single-command build + deploy:
+
+```bash
+npm run ship
+```
+
 ### Password Protection
 
 1. Go to the `config.js` file and set `challenge` to **true**. Then, set the environment variable as follows:
