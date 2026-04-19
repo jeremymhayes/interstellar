@@ -35,11 +35,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const nameElement = document.getElementById("name");
   const customIcon = localStorage.getItem("CustomIcon");
   const customName = localStorage.getItem("CustomName");
-  iconElement.value = customIcon;
-  nameElement.value = customName;
+  if (iconElement) {
+    iconElement.value = customIcon ?? "";
+  }
+  if (nameElement) {
+    nameElement.value = customName ?? "";
+  }
 
-  if (localStorage.getItem("ab") === "true") {
-    document.getElementById("ab-settings-switch").checked = true;
+  const aboutBlankSwitch = document.getElementById("ab-settings-switch");
+  if (aboutBlankSwitch && localStorage.getItem("ab") === "true") {
+    aboutBlankSwitch.checked = true;
   }
 });
 
@@ -80,79 +85,116 @@ let eventKeyRaw = localStorage.getItem("eventKeyRaw") || "`";
 let pLink = localStorage.getItem("pLink") || "https://classroom.google.com/";
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("eventKeyInput").value = eventKeyRaw;
-  document.getElementById("linkInput").value = pLink;
+  const eventKeyField = document.getElementById("eventKeyInput");
+  const linkField = document.getElementById("linkInput");
+
+  if (eventKeyField) {
+    eventKeyField.value = eventKeyRaw;
+  }
+  if (linkField) {
+    linkField.value = pLink;
+  }
 
   const selectedOption = localStorage.getItem("selectedOption");
   if (selectedOption) {
-    updateHeadSection(selectedOption);
+    updateHeadSection();
   }
 });
 
 const eventKeyInput = document.getElementById("eventKeyInput");
-eventKeyInput.addEventListener("input", () => {
-  eventKey = eventKeyInput.value.split(",");
+eventKeyInput?.addEventListener("input", () => {
+  eventKey = eventKeyInput.value
+    .split(",")
+    .map(key => key.trim())
+    .filter(Boolean);
 });
 
 const linkInput = document.getElementById("linkInput");
-linkInput.addEventListener("input", () => {
+linkInput?.addEventListener("input", () => {
   pLink = linkInput.value;
 });
 
 function saveEventKey() {
-  eventKey = eventKeyInput.value.split(",");
+  if (!eventKeyInput) {
+    return;
+  }
+
+  const nextEventKey = eventKeyInput.value
+    .split(",")
+    .map(key => key.trim())
+    .filter(Boolean);
+  eventKey = nextEventKey.length ? nextEventKey : ["`"];
   eventKeyRaw = eventKeyInput.value;
   localStorage.setItem("eventKey", JSON.stringify(eventKey));
   localStorage.setItem("pLink", pLink);
   localStorage.setItem("eventKeyRaw", eventKeyRaw);
-  // biome-ignore lint: idk
-  window.location = window.location;
+  window.location.reload();
 }
 const dropdown = document.getElementById("dropdown");
-const options = dropdown.getElementsByTagName("option");
+const options = dropdown ? dropdown.getElementsByTagName("option") : [];
 
 const sortedOptions = Array.from(options).sort((a, b) => a.textContent.localeCompare(b.textContent));
 
-while (dropdown.firstChild) {
-  dropdown.removeChild(dropdown.firstChild);
-}
+if (dropdown) {
+  while (dropdown.firstChild) {
+    dropdown.removeChild(dropdown.firstChild);
+  }
 
-for (const option of sortedOptions) {
-  dropdown.appendChild(option);
+  for (const option of sortedOptions) {
+    dropdown.appendChild(option);
+  }
 }
 
 function saveIcon() {
   const iconElement = document.getElementById("icon");
-  const iconValue = iconElement.value;
-  console.log("saveIcon function called with icon value:", iconValue);
+  const iconValue = iconElement?.value.trim();
+  if (!iconValue) {
+    return;
+  }
+
   localStorage.setItem("icon", iconValue);
 }
 
 function saveName() {
   const nameElement = document.getElementById("name");
-  const nameValue = nameElement.value;
-  console.log("saveName function called with name value:", nameValue);
+  const nameValue = nameElement?.value.trim();
+  if (!nameValue) {
+    return;
+  }
+
   localStorage.setItem("name", nameValue);
 }
 
 function CustomIcon() {
   const iconElement = document.getElementById("icon");
-  const iconValue = iconElement.value;
-  console.log("saveIcon function called with icon value:", iconValue);
-  localStorage.setItem("CustomIcon", iconValue);
+  const iconValue = iconElement?.value.trim();
+  if (iconValue) {
+    localStorage.setItem("CustomIcon", iconValue);
+  } else {
+    localStorage.removeItem("CustomIcon");
+  }
 }
 
 function CustomName() {
   const nameElement = document.getElementById("name");
-  const nameValue = nameElement.value;
-  console.log("saveName function called with name value:", nameValue);
-  localStorage.setItem("CustomName", nameValue);
+  const nameValue = nameElement?.value.trim();
+  if (nameValue) {
+    localStorage.setItem("CustomName", nameValue);
+  } else {
+    localStorage.removeItem("CustomName");
+  }
 }
 function ResetCustomCloak() {
   localStorage.removeItem("CustomName");
   localStorage.removeItem("CustomIcon");
-  document.getElementById("icon").value = "";
-  document.getElementById("name").value = "";
+  const iconInput = document.getElementById("icon");
+  const nameInput = document.getElementById("name");
+  if (iconInput) {
+    iconInput.value = "";
+  }
+  if (nameInput) {
+    nameInput.value = "";
+  }
 }
 
 function redirectToMainDomain() {
@@ -172,12 +214,13 @@ function redirectToMainDomain() {
   } else window.location.href = mainDomainUrl + window.location.pathname;
 }
 
-document.addEventListener("DOMContentLoaded", event => {
-  const icon = document.getElementById("tab-favicon");
-  const name = document.getElementById("t");
+document.addEventListener("DOMContentLoaded", () => {
   const selectedValue = localStorage.getItem("selectedOption") || "Default";
-  document.getElementById("dropdown").value = selectedValue;
-  updateHeadSection(selectedValue);
+  const cloakDropdown = document.getElementById("dropdown");
+  if (cloakDropdown) {
+    cloakDropdown.value = selectedValue;
+  }
+  updateHeadSection();
 });
 
 function handleDropdownChange(selectElement) {
@@ -185,28 +228,58 @@ function handleDropdownChange(selectElement) {
   localStorage.removeItem("CustomName");
   localStorage.removeItem("CustomIcon");
   localStorage.setItem("selectedOption", selectedValue);
-  updateHeadSection(selectedValue);
-  redirectToMainDomain(selectedValue);
+  updateHeadSection();
+  redirectToMainDomain();
 }
 
-function updateHeadSection(selectedValue) {
+function updateHeadSection() {
   const icon = document.getElementById("tab-favicon");
   const name = document.getElementById("t");
   const customName = localStorage.getItem("CustomName");
   const customIcon = localStorage.getItem("CustomIcon");
 
-  if (customName && customIcon) {
+  if (name && customName) {
     name.textContent = customName;
-    icon.setAttribute("href", customIcon);
     localStorage.setItem("name", customName);
+  }
+  if (icon && customIcon) {
+    icon.setAttribute("href", customIcon);
     localStorage.setItem("icon", customIcon);
   }
 }
+
+function themeChange(selectElement) {
+  const selectedTheme = selectElement.value;
+  if (!selectedTheme || selectElement.selectedOptions[0]?.disabled) {
+    return;
+  }
+
+  if (selectedTheme === "d") {
+    localStorage.removeItem("theme");
+  } else {
+    localStorage.setItem("theme", selectedTheme);
+  }
+
+  redirectToMainDomain();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const themeDropdown = document.getElementById("theme-dropdown");
+  const selectedTheme = localStorage.getItem("theme");
+
+  if (themeDropdown && selectedTheme) {
+    themeDropdown.value = selectedTheme;
+  }
+});
 // Custom Background
 document.addEventListener("DOMContentLoaded", () => {
   const saveButton = document.getElementById("save-button");
   const backgroundInput = document.getElementById("background-input");
   const resetButton = document.getElementById("reset-button");
+
+  if (!saveButton || !backgroundInput || !resetButton) {
+    return;
+  }
 
   saveButton.addEventListener("click", () => {
     const imageURL = backgroundInput.value;
@@ -221,7 +294,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   resetButton.addEventListener("click", () => {
     localStorage.removeItem("backgroundImage");
-    document.body.style.backgroundImage = "url('default-background.jpg')";
+    document.body.style.backgroundImage = "";
     window.location.reload();
   });
 });
@@ -229,28 +302,20 @@ document.addEventListener("DOMContentLoaded", () => {
 // Particles
 const switches = document.getElementById("2");
 
-if (window.localStorage.getItem("particles") !== "") {
-  if (window.localStorage.getItem("particles") === "true") {
-    switches.checked = true;
-  } else {
-    switches.checked = false;
-  }
-}
+if (switches) {
+  switches.checked = window.localStorage.getItem("particles") === "true";
 
-switches.addEventListener("change", event => {
-  if (event.currentTarget.checked) {
-    window.localStorage.setItem("particles", "true");
-  } else {
-    window.localStorage.setItem("particles", "false");
-  }
-});
+  switches.addEventListener("change", event => {
+    window.localStorage.setItem("particles", event.currentTarget.checked ? "true" : "false");
+  });
+}
 // AB Cloak
 function AB() {
   let inFrame;
 
   try {
     inFrame = window !== top;
-  } catch (e) {
+  } catch {
     inFrame = true;
   }
 
@@ -296,7 +361,7 @@ function AB() {
 }
 
 function toggleAB() {
-  ab = localStorage.getItem("ab");
+  const ab = localStorage.getItem("ab");
   if (!ab) {
     localStorage.setItem("ab", "true");
   } else if (ab === "true") {
@@ -319,6 +384,10 @@ function EngineChange(dropdown) {
     Ecosia: "https://www.ecosia.org/search?q=",
   };
 
+  if (!engineUrls[selectedEngine]) {
+    return;
+  }
+
   localStorage.setItem("engine", engineUrls[selectedEngine]);
   localStorage.setItem("enginename", selectedEngine);
 
@@ -326,8 +395,8 @@ function EngineChange(dropdown) {
 }
 
 function SaveEngine() {
-  const customEngine = document.getElementById("engine-form").value;
-  if (customEngine.trim() !== "") {
+  const customEngine = document.getElementById("engine-form")?.value.trim();
+  if (customEngine) {
     localStorage.setItem("engine", customEngine);
     localStorage.setItem("enginename", "Custom");
   } else {
@@ -338,7 +407,7 @@ function SaveEngine() {
 document.addEventListener("DOMContentLoaded", () => {
   const selectedEngineName = localStorage.getItem("enginename");
   const dropdown = document.getElementById("engine");
-  if (selectedEngineName) {
+  if (dropdown && selectedEngineName) {
     dropdown.value = selectedEngineName;
   }
 });
@@ -368,11 +437,13 @@ function randRange(min, max) {
 
 function exportSaveData() {
   function getCookies() {
-    const cookies = document.cookie.split("; ");
+    const cookies = document.cookie ? document.cookie.split("; ") : [];
     const cookieObj = {};
     cookies.forEach(cookie => {
       const [name, value] = cookie.split("=");
-      cookieObj[name] = value;
+      if (name) {
+        cookieObj[name] = value;
+      }
     });
     return cookieObj;
   }
@@ -413,9 +484,10 @@ function importSaveData() {
       try {
         const data = JSON.parse(e.target.result);
         if (data.cookies) {
-          Object.entries(data.cookies).forEach(([key, value]) => {
-            document.cookie = `${key}=${value}; path=/`;
-          });
+          for (const [key, value] of Object.entries(data.cookies)) {
+            // biome-ignore lint/suspicious/noDocumentCookie: Cookie Store API is not available in every browser this app supports.
+            document.cookie = `${encodeURIComponent(key)}=${encodeURIComponent(value)}; path=/`;
+          }
         }
         if (data.localStorage) {
           Object.entries(data.localStorage).forEach(([key, value]) => {
@@ -432,3 +504,21 @@ function importSaveData() {
   };
   input.click();
 }
+
+Object.assign(window, {
+  AB,
+  CustomIcon,
+  CustomName,
+  EngineChange,
+  ResetCustomCloak,
+  SaveEngine,
+  exportSaveData,
+  handleDropdownChange,
+  importSaveData,
+  redirectToMainDomain,
+  saveEventKey,
+  saveIcon,
+  saveName,
+  themeChange,
+  toggleAB,
+});

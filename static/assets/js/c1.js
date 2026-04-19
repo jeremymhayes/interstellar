@@ -155,7 +155,7 @@ function pinContains(i, p) {
   return false;
 }
 
-function Custom(app) {
+function Custom() {
   const title = prompt("Enter title for the app:");
   const link = prompt("Enter link for the app:");
   if (title && link) {
@@ -372,8 +372,10 @@ fetch(path)
     }
 
     const appsContainer = document.getElementById("apps-container");
-    appsContainer.appendChild(pinnedApps);
-    appsContainer.appendChild(nonPinnedApps);
+    if (appsContainer) {
+      appsContainer.appendChild(pinnedApps);
+      appsContainer.appendChild(nonPinnedApps);
+    }
   })
   .catch(error => {
     console.error("Error fetching JSON data:", error);
@@ -409,3 +411,8 @@ function bar() {
     }
   }
 }
+
+Object.assign(window, {
+  bar,
+  category,
+});

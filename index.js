@@ -1,6 +1,6 @@
-import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { createBareServer } from "@nebula-services/bare-server-node";
 import chalk from "chalk";
 import cookieParser from "cookie-parser";
@@ -14,20 +14,45 @@ import config from "./config.js";
 
 console.log(chalk.yellow("🚀 Starting server..."));
 
-const __dirname = process.cwd();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const server = http.createServer();
 const app = express();
 const bareServer = createBareServer("/ca/");
-const PORT = process.env.PORT || 8080;
+const requestedPort = Number.parseInt(process.env.PORT ?? "8080", 10);
+const PORT = Number.isNaN(requestedPort) ? 8080 : requestedPort;
 const cache = new Map();
 const CACHE_TTL = 30 * 24 * 60 * 60 * 1000; // Cache for 30 Days
+const MAX_CACHE_ENTRIES = 250;
+const REMOTE_ASSET_BASE_URLS = {
+  "/e/1/": "https://raw.githubusercontent.com/qrs/x/fixy/",
+  "/e/2/": "https://raw.githubusercontent.com/3v1/V5-Assets/main/",
+  "/e/3/": "https://raw.githubusercontent.com/3v1/V5-Retro/master/",
+};
 
-if (config.challenge !== false) {
-  console.log(chalk.green("🔒 Password protection is enabled! Listing logins below"));
-  // biome-ignore lint: idk
-  Object.entries(config.users).forEach(([username, password]) => {
-    console.log(chalk.blue(`Username: ${username}, Password: ${password}`));
-  });
+function setCachedAsset(cacheKey, payload) {
+  cache.set(cacheKey, payload);
+
+  if (cache.size <= MAX_CACHE_ENTRIES) {
+    return;
+  }
+
+  const oldestKey = cache.keys().next().value;
+  cache.delete(oldestKey);
+}
+
+function getRemoteAssetTarget(requestPath) {
+  for (const [prefix, baseUrl] of Object.entries(REMOTE_ASSET_BASE_URLS)) {
+    if (requestPath.startsWith(prefix)) {
+      return `${baseUrl}${requestPath.slice(prefix.length).replace(/^\/+/, "")}`;
+    }
+  }
+
+  return null;
+}
+
+if (config.challenge === true) {
+  console.log(chalk.green("🔒 Password protection is enabled."));
+  console.log(chalk.blue(`Configured users: ${Object.keys(config.users).join(", ")}`));
   app.use(basicAuth({ users: config.users, challenge: true }));
 }
 
@@ -38,25 +63,15 @@ app.get("/e/*", async (req, res, next) => {
       if (Date.now() - timestamp > CACHE_TTL) {
         cache.delete(req.path);
       } else {
-        res.writeHead(200, { "Content-Type": contentType });
+        res.writeHead(200, {
+          "Cache-Control": "public, max-age=2592000",
+          "Content-Type": contentType,
+        });
         return res.end(data);
       }
     }
 
-    const baseUrls = {
-      "/e/1/": "https://raw.githubusercontent.com/qrs/x/fixy/",
-      "/e/2/": "https://raw.githubusercontent.com/3v1/V5-Assets/main/",
-      "/e/3/": "https://raw.githubusercontent.com/3v1/V5-Retro/master/",
-    };
-
-    let reqTarget;
-    for (const [prefix, baseUrl] of Object.entries(baseUrls)) {
-      if (req.path.startsWith(prefix)) {
-        reqTarget = baseUrl + req.path.slice(prefix.length);
-        break;
-      }
-    }
-
+    const reqTarget = getRemoteAssetTarget(req.path);
     if (!reqTarget) {
       return next();
     }
@@ -69,10 +84,13 @@ app.get("/e/*", async (req, res, next) => {
     const data = Buffer.from(await asset.arrayBuffer());
     const ext = path.extname(reqTarget);
     const no = [".unityweb"];
-    const contentType = no.includes(ext) ? "application/octet-stream" : mime.getType(ext);
+    const contentType = no.includes(ext) ? "application/octet-stream" : (mime.getType(ext) ?? "application/octet-stream");
 
-    cache.set(req.path, { data, contentType, timestamp: Date.now() });
-    res.writeHead(200, { "Content-Type": contentType });
+    setCachedAsset(req.path, { data, contentType, timestamp: Date.now() });
+    res.writeHead(200, {
+      "Cache-Control": "public, max-age=2592000",
+      "Content-Type": contentType,
+    });
     res.end(data);
   } catch (error) {
     console.error("Error fetching asset:", error);
@@ -102,18 +120,17 @@ const routes = [
   { path: "/", file: "index.html" },
 ];
 
-// biome-ignore lint: idk
 routes.forEach(route => {
   app.get(route.path, (_req, res) => {
     res.sendFile(path.join(__dirname, "static", route.file));
   });
 });
 
-app.use((req, res, next) => {
+app.use((_req, res) => {
   res.status(404).sendFile(path.join(__dirname, "static", "404.html"));
 });
 
-app.use((err, req, res, next) => {
+app.use((err, _req, res, _next) => {
   console.error(err.stack);
   res.status(500).sendFile(path.join(__dirname, "static", "404.html"));
 });

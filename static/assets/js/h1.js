@@ -3,7 +3,7 @@ let inFrame;
 
 try {
   inFrame = window !== top;
-} catch (e) {
+} catch {
   inFrame = true;
 }
 if (!localStorage.getItem("ab")) localStorage.setItem("ab", true);
@@ -50,8 +50,8 @@ if (!inFrame && !navigator.userAgent.includes("Firefox") && localStorage.getItem
   }, 2000);
 }
 // Particles
-document.addEventListener("DOMContentLoaded", event => {
-  if (window.localStorage.getItem("Particles") === "true") {
+document.addEventListener("DOMContentLoaded", () => {
+  if ((window.localStorage.getItem("particles") ?? window.localStorage.getItem("Particles")) === "true" && typeof particlesJS === "function") {
     const particlesConfig = {
       particles: {
         number: {
@@ -187,9 +187,11 @@ function US() {
   SplashE.innerText = SplashT[SplashI];
 }
 
-SplashE.innerText = SplashT[SplashI];
+if (SplashE) {
+  SplashE.innerText = SplashT[SplashI];
 
-SplashE.addEventListener("click", US);
+  SplashE.addEventListener("click", US);
+}
 // Random URL
 function getRandomUrl() {
   const randomUrls = [

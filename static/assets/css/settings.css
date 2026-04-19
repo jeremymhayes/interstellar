@@ -60,7 +60,7 @@ a {
    height: 34px;
 }
 
-.switch input {
+.switch .slider-checkbox {
    opacity: 0;
    width: 0;
    height: 0;
@@ -98,7 +98,7 @@ input:checked + .slider-round:before {
    transform: translateX(26px);
 }
 
-input {
+input:not(.slider-checkbox) {
    padding: 15px;
    border-radius: 10px;
    background: var(--background-input);
@@ -188,7 +188,7 @@ select {
       font-size: 40px;
    }
 
-   input,
+   input:not(.slider-checkbox),
    .key-form {
       width: 90%;
    }

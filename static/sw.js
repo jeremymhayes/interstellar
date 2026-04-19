@@ -7,7 +7,6 @@ importScripts(__uv$config.sw || "/assets/mathematics/sw.js?v=2025-04-15");
 const uv = new UVServiceWorker();
 const dynamic = new Dynamic();
 
-const userKey = new URL(location).searchParams.get("userkey");
 self.dynamic = dynamic;
 
 self.addEventListener("fetch", event => {
