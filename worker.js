@@ -18,6 +18,21 @@ const REMOTE_ASSET_BASE_URLS = {
 const CACHE_CONTROL = "public, max-age=2592000";
 const BASIC_AUTH_PREFIX = "Basic ";
 const TEXT_ENCODER = new TextEncoder();
+const BARE_PREFIX = "/ca";
+const BARE_V1_PATH = `${BARE_PREFIX}/v1/`;
+const BARE_V3_PATH = `${BARE_PREFIX}/v3/`;
+const BARE_CORS_HEADERS = {
+  "Access-Control-Allow-Headers": "*",
+  "Access-Control-Allow-Methods": "*",
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Expose-Headers": "*",
+  "Access-Control-Max-Age": "7200",
+  "X-Robots-Tag": "noindex",
+};
+const FORBIDDEN_BARE_REQUEST_HEADERS = new Set(["accept-encoding", "connection", "content-length", "host", "origin", "referer", "transfer-encoding"]);
+const FORBIDDEN_BARE_RESPONSE_HEADERS = new Set(["access-control-allow-headers", "access-control-allow-methods", "access-control-allow-origin", "access-control-expose-headers", "access-control-max-age", "connection", "transfer-encoding", "vary"]);
+const NULL_BODY_METHODS = new Set(["GET", "HEAD"]);
+const NULL_BODY_STATUSES = new Set([101, 204, 205, 304]);
 
 function unauthorizedResponse() {
   return new Response("Authentication required", {
@@ -121,6 +136,235 @@ async function fetchRemoteAsset(request, ctx) {
   return null;
 }
 
+function bareJson(status, payload) {
+  return new Response(JSON.stringify(payload, null, "\t"), {
+    status,
+    headers: {
+      ...BARE_CORS_HEADERS,
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  });
+}
+
+function bareManifest() {
+  return bareJson(200, {
+    language: "Cloudflare Workers",
+    memoryUsage: 0,
+    project: {
+      description: "Worker-native Bare v1 fetch bridge",
+      name: "interstellar-worker-bare",
+      version: "1.0.0",
+    },
+    versions: ["v1", "v3"],
+  });
+}
+
+function getBareHeaderValue(request, headerName) {
+  const rawValue = request.headers.get(headerName);
+  if (rawValue !== null) {
+    return rawValue;
+  }
+
+  const chunks = [];
+  const chunkPrefix = `${headerName}-`;
+
+  for (const [name, value] of request.headers.entries()) {
+    if (!name.startsWith(chunkPrefix)) {
+      continue;
+    }
+
+    const chunkIndex = Number.parseInt(name.slice(chunkPrefix.length), 10);
+    if (!Number.isNaN(chunkIndex) && value.startsWith(";")) {
+      chunks[chunkIndex] = value.slice(1);
+    }
+  }
+
+  return chunks.length ? chunks.join("") : null;
+}
+
+function parseBareJsonHeader(request, headerName, fallback) {
+  const rawValue = getBareHeaderValue(request, headerName);
+  if (rawValue === null) {
+    if (fallback !== undefined) {
+      return fallback;
+    }
+
+    throw new TypeError(`Missing ${headerName}`);
+  }
+
+  return JSON.parse(rawValue);
+}
+
+function getBareForwardHeaders(request) {
+  const rawValue = request.headers.get("x-bare-forward-headers");
+  if (rawValue === null) {
+    return [];
+  }
+
+  try {
+    const parsed = JSON.parse(rawValue);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return rawValue
+      .split(",")
+      .map(value => value.trim())
+      .filter(Boolean);
+  }
+}
+
+function appendBareHeader(headers, name, value) {
+  const lowerName = name.toLowerCase();
+  if (FORBIDDEN_BARE_REQUEST_HEADERS.has(lowerName)) {
+    return;
+  }
+
+  const values = Array.isArray(value) ? value : [value];
+  for (const headerValue of values) {
+    if (typeof headerValue !== "string") {
+      continue;
+    }
+
+    try {
+      headers.append(name, headerValue);
+    } catch {
+      // Some browser/client headers cannot be replayed by Workers fetch.
+    }
+  }
+}
+
+function getBareRequestHeaders(request) {
+  const headers = new Headers();
+  const bareHeaders = parseBareJsonHeader(request, "x-bare-headers", {});
+
+  for (const [name, value] of Object.entries(bareHeaders)) {
+    appendBareHeader(headers, name, value);
+  }
+
+  for (const name of getBareForwardHeaders(request)) {
+    if (typeof name !== "string") {
+      continue;
+    }
+
+    const value = request.headers.get(name);
+    if (value !== null) {
+      appendBareHeader(headers, name, value);
+    }
+  }
+
+  return headers;
+}
+
+function getBareV1RemoteUrl(request) {
+  const protocol = request.headers.get("x-bare-protocol");
+  const host = request.headers.get("x-bare-host");
+  const port = request.headers.get("x-bare-port");
+  const path = request.headers.get("x-bare-path");
+
+  if (!protocol || !host || !port || path === null) {
+    throw new TypeError("Missing required Bare remote headers");
+  }
+
+  if (protocol !== "http:" && protocol !== "https:") {
+    throw new TypeError(`Unsupported Bare protocol: ${protocol}`);
+  }
+
+  return new URL(`${protocol}//${host}:${port}${path}`);
+}
+
+function getBareV3RemoteUrl(request) {
+  const bareUrl = request.headers.get("x-bare-url");
+  if (!bareUrl) {
+    throw new TypeError("Missing x-bare-url");
+  }
+
+  const url = new URL(bareUrl);
+  if (url.protocol !== "http:" && url.protocol !== "https:") {
+    throw new TypeError(`Unsupported Bare protocol: ${url.protocol}`);
+  }
+
+  return url;
+}
+
+function getBareResponseHeaders(response) {
+  const headers = {};
+
+  for (const [name, value] of response.headers.entries()) {
+    if (!FORBIDDEN_BARE_RESPONSE_HEADERS.has(name.toLowerCase())) {
+      headers[name] = value;
+    }
+  }
+
+  return headers;
+}
+
+async function fetchBareRemote(request, remoteUrl) {
+  return fetch(remoteUrl, {
+    body: NULL_BODY_METHODS.has(request.method.toUpperCase()) ? undefined : request.body,
+    headers: getBareRequestHeaders(request),
+    method: request.method,
+    redirect: "manual",
+  });
+}
+
+async function handleBareTunnel(request, getRemoteUrl) {
+  if (request.method === "OPTIONS") {
+    return new Response(null, { status: 200, headers: BARE_CORS_HEADERS });
+  }
+
+  let remoteResponse;
+  try {
+    remoteResponse = await fetchBareRemote(request, getRemoteUrl(request));
+  } catch (error) {
+    return bareJson(500, {
+      code: "FETCH_FAILED",
+      id: "request",
+      message: error instanceof Error ? error.message : String(error),
+    });
+  }
+
+  const responseHeaders = new Headers(BARE_CORS_HEADERS);
+  responseHeaders.set("x-bare-headers", JSON.stringify(getBareResponseHeaders(remoteResponse)));
+  responseHeaders.set("x-bare-status", remoteResponse.status.toString());
+  responseHeaders.set("x-bare-status-text", remoteResponse.statusText);
+
+  return new Response(NULL_BODY_STATUSES.has(remoteResponse.status) ? null : remoteResponse.body, {
+    headers: responseHeaders,
+    status: 200,
+  });
+}
+
+function handleBareRequest(request, url) {
+  if (request.method === "OPTIONS") {
+    return new Response(null, { status: 200, headers: BARE_CORS_HEADERS });
+  }
+
+  if (url.pathname === BARE_PREFIX || url.pathname === `${BARE_PREFIX}/`) {
+    return bareManifest();
+  }
+
+  if (url.pathname === BARE_V1_PATH) {
+    return handleBareV1(request);
+  }
+
+  if (url.pathname === BARE_V3_PATH) {
+    return handleBareV3(request);
+  }
+
+  return bareJson(404, {
+    code: "NOT_FOUND",
+    id: "bare.route",
+    message: "Bare route not found.",
+  });
+}
+
+function handleBareV1(request) {
+  return handleBareTunnel(request, getBareV1RemoteUrl);
+}
+
+function handleBareV3(request) {
+  return handleBareTunnel(request, getBareV3RemoteUrl);
+}
+
 async function notFoundResponse(env, request) {
   const response = await env.ASSETS.fetch(new Request(new URL("/404.html", request.url)));
 
@@ -138,11 +382,8 @@ export default {
 
     const url = new URL(request.url);
 
-    if (url.pathname.startsWith("/ca/") || url.pathname === "/ca") {
-      return new Response("The /ca Bare server endpoint is not supported in the Cloudflare Workers runtime.", {
-        status: 501,
-        headers: { "Content-Type": "text/plain; charset=utf-8" },
-      });
+    if (url.pathname === BARE_PREFIX || url.pathname.startsWith(`${BARE_PREFIX}/`)) {
+      return handleBareRequest(request, url);
     }
 
     const remoteAssetResponse = await fetchRemoteAsset(request, ctx);

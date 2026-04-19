@@ -7,6 +7,9 @@ importScripts(__uv$config.sw || "/assets/mathematics/sw.js?v=2025-04-15");
 const uv = new UVServiceWorker();
 const dynamic = new Dynamic();
 
+const userKey = new URL(location).searchParams.get("userkey");
+// The imported Ultraviolet worker reads this global by name when it builds Bare requests.
+void userKey;
 self.dynamic = dynamic;
 
 self.addEventListener("fetch", event => {
