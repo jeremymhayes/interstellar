@@ -1,8 +1,14 @@
 // index.js
 window.addEventListener("load", () => {
-  navigator.serviceWorker.register("../sw.js?v=2025-04-15", {
-    scope: "/a/",
-  });
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("../sw.js?v=2025-04-15", {
+        scope: "/a/",
+      })
+      .catch(error => {
+        console.warn("Service worker registration failed:", error);
+      });
+  }
 });
 
 let xl;
@@ -33,11 +39,15 @@ if (form && input) {
 }
 function processUrl(value, path) {
   let url = value.trim();
+  if (!url) {
+    return;
+  }
+
   const engine = localStorage.getItem("engine");
-  const searchUrl = engine ? engine : "https://search.brave.com/search?q=";
+  const searchUrl = engine || "https://search.brave.com/search?q=";
 
   if (!isUrl(url)) {
-    url = searchUrl + url;
+    url = searchUrl + encodeURIComponent(url);
   } else if (!(url.startsWith("https://") || url.startsWith("http://"))) {
     url = `https://${url}`;
   }
@@ -67,8 +77,11 @@ function dy(value) {
 }
 
 function isUrl(val = "") {
-  if (/^http(s?):\/\//.test(val) || (val.includes(".") && val.substr(0, 1) !== " ")) {
-    return true;
-  }
-  return false;
+  return /^https?:\/\//.test(val) || (val.includes(".") && val.trim().length > 0);
 }
+
+Object.assign(window, {
+  blank,
+  dy,
+  go,
+});

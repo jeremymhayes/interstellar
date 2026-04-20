@@ -25,7 +25,7 @@ img {
 
 .f-nav {
    top: 0;
-   letter-spacing: 2px;
+   letter-spacing: 0px;
    font-size: 22px;
    left: 0;
    right: 0;
@@ -38,7 +38,7 @@ img {
    backdrop-filter: var(--backdrop-filter);
    transition: 0.35s ease;
    border-radius: 15px;
-   width: fill;
+   width: auto;
    margin: 15px;
    z-index: 100;
    position: fixed;
@@ -79,6 +79,7 @@ img {
 
 .f-nav-right .navbar-link {
    margin-left: 10px;
+   margin-right: 5px;
    text-transform: uppercase;
    cursor: pointer;
    color: var(--text-primary);
@@ -132,17 +133,13 @@ img {
    transition: all 0.2s ease;
 }
 
-.navbar-link {
-   margin-right: 5px;
-}
-
 .navbar-link:hover > .settings-icon {
    animation: spin 0.5s;
    animation-timing-function: cubic-bezier(0, 1.04, 0.91, 0.99);
 }
 
 @media (max-width: 768px) {
-   .f-nav-right .navbar-link an {
+   .f-nav-right .navbar-link span {
       display: none;
    }
    .f-nav-right .fa-solid {
