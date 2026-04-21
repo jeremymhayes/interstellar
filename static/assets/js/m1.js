@@ -35,10 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
         <a class="icon" href="/./"><img alt="nav" id="INImg" src="${LogoUrl}"/></a>
       </div>
       <div class="f-nav-right">
-        <a class="navbar-link" href="/./a"><i class="fa-solid fa-gamepad navbar-icon"></i><an>&#71;&#97;</an><an>&#109;&#101;&#115;</an></a>
-        <a class="navbar-link" href="/./b"><i class="fa-solid fa-phone navbar-icon"></i><an>&#65;&#112;</an><an>&#112;&#115;</an></a>
-        ${qp ? "" : '<a class="navbar-link" href="/./d"><i class="fa-solid fa-laptop navbar-icon"></i><an>&#84;&#97;</an><an>&#98;&#115;</an></a>'}
-        <a class="navbar-link" href="/./c"><i class="fa-solid fa-gear navbar-icon settings-icon"></i><an>&#83;&#101;&#116;</an><an>&#116;&#105;&#110;&#103;</an></a>
+        <a class="navbar-link" href="/./a"><i class="fa-solid fa-gamepad navbar-icon"></i><span>&#71;&#97;</span><span>&#109;&#101;&#115;</span></a>
+        <a class="navbar-link" href="/./b"><i class="fa-solid fa-phone navbar-icon"></i><span>&#65;&#112;</span><span>&#112;&#115;</span></a>
+        ${qp ? "" : '<a class="navbar-link" href="/./d"><i class="fa-solid fa-laptop navbar-icon"></i><span>&#84;&#97;</span><span>&#98;&#115;</span></a>'}
+        <a class="navbar-link" href="/./c"><i class="fa-solid fa-gear navbar-icon settings-icon"></i><span>&#83;&#101;&#116;</span><span>&#116;&#105;&#110;&#103;</span></a>
       </div>`;
     nav.innerHTML = html;
   }
@@ -64,10 +64,13 @@ document.addEventListener("DOMContentLoaded", () => {
   if (themes[themeid]) {
     themeEle.href = themes[themeid];
     document.body.appendChild(themeEle);
-  } else {
-    const customThemeEle = document.createElement("style");
-    customThemeEle.textContent = localStorage.getItem(`theme-${themeid}`);
-    document.head.appendChild(customThemeEle);
+  } else if (themeid) {
+    const customTheme = localStorage.getItem(`theme-${themeid}`);
+    if (customTheme) {
+      const customThemeEle = document.createElement("style");
+      customThemeEle.textContent = customTheme;
+      document.head.appendChild(customThemeEle);
+    }
   }
 
   // Favicon and Name Logic
@@ -90,11 +93,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (finalIconUrl) {
-      icon.setAttribute("href", finalIconUrl);
+      icon?.setAttribute("href", finalIconUrl);
       localStorage.setItem("icon", finalIconUrl);
     }
     if (FinalNameValue) {
-      name.textContent = FinalNameValue;
+      if (name) {
+        name.textContent = FinalNameValue;
+      }
       localStorage.setItem("name", FinalNameValue);
     }
   }
@@ -297,7 +302,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Event Key Logic
-  const eventKey = JSON.parse(localStorage.getItem("eventKey")) || ["Ctrl", "E"];
+  let eventKey = ["Ctrl", "E"];
+  try {
+    const storedEventKey = JSON.parse(localStorage.getItem("eventKey"));
+    if (Array.isArray(storedEventKey) && storedEventKey.length > 0) {
+      eventKey = storedEventKey;
+    }
+  } catch {
+    eventKey = [localStorage.getItem("eventKey") || "`"];
+  }
+
   const pLink = localStorage.getItem("pLink") || "https://classroom.google.com/";
   let pressedKeys = [];
 

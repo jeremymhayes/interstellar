@@ -1,13 +1,23 @@
 // tabs.js
 window.addEventListener("load", () => {
-  navigator.serviceWorker.register("../sw.js?v=2025-04-15", { scope: "/a/" });
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("../sw.js?v=2025-04-15", { scope: "/a/" }).catch(error => {
+      console.warn("Service worker registration failed:", error);
+    });
+  }
+
   const form = document.getElementById("fv");
   const input = document.getElementById("input");
   if (form && input) {
     form.addEventListener("submit", async event => {
       event.preventDefault();
       const formValue = input.value.trim();
-      const url = isUrl(formValue) ? prependHttps(formValue) : `https://search.brave.com/search?q=${formValue}`;
+      if (!formValue) {
+        return;
+      }
+
+      const searchUrl = localStorage.getItem("engine") || "https://search.brave.com/search?q=";
+      const url = isUrl(formValue) ? prependHttps(formValue) : `${searchUrl}${encodeURIComponent(formValue)}`;
       processUrl(url);
     });
   }
@@ -15,16 +25,16 @@ window.addEventListener("load", () => {
     sessionStorage.setItem("GoUrl", __uv$config.encodeUrl(url));
     const iframeContainer = document.getElementById("frame-container");
     const activeIframe = Array.from(iframeContainer.querySelectorAll("iframe")).find(iframe => iframe.classList.contains("active"));
+    if (!activeIframe) {
+      return;
+    }
+
     activeIframe.src = `/a/${__uv$config.encodeUrl(url)}`;
     activeIframe.dataset.tabUrl = url;
     input.value = url;
-    console.log(activeIframe.dataset.tabUrl);
   }
   function isUrl(val = "") {
-    if (/^http(s?):\/\//.test(val) || (val.includes(".") && val.substr(0, 1) !== " ")) {
-      return true;
-    }
-    return false;
+    return /^https?:\/\//.test(val) || (val.includes(".") && val.trim().length > 0);
   }
   function prependHttps(url) {
     if (!url.startsWith("http://") && !url.startsWith("https://")) {
@@ -33,7 +43,7 @@ window.addEventListener("load", () => {
     return url;
   }
 });
-document.addEventListener("DOMContentLoaded", event => {
+document.addEventListener("DOMContentLoaded", () => {
   const addTabButton = document.getElementById("add-tab");
   const tabList = document.getElementById("tab-list");
   const iframeContainer = document.getElementById("frame-container");
@@ -72,7 +82,7 @@ document.addEventListener("DOMContentLoaded", event => {
     newIframe.dataset.tabId = tabCounter;
     newIframe.classList.add("active");
     newIframe.addEventListener("load", () => {
-      const title = newIframe.contentDocument.title;
+      const title = newIframe.contentDocument?.title ?? "";
       if (title.length <= 1) {
         tabTitle.textContent = "Tab";
       } else {
@@ -199,8 +209,7 @@ document.addEventListener("DOMContentLoaded", event => {
 function reload() {
   const activeIframe = document.querySelector("#frame-container iframe.active");
   if (activeIframe) {
-    // biome-ignore lint: idk
-    activeIframe.src = activeIframe.src;
+    activeIframe.contentWindow.location.reload();
     Load();
   } else {
     console.error("No active iframe found");
@@ -287,20 +296,19 @@ function FS() {
   }
 }
 const fullscreenButton = document.getElementById("fullscreen-button");
-fullscreenButton.addEventListener("click", FS);
+fullscreenButton?.addEventListener("click", FS);
 // Home
 function Home() {
   window.location.href = "./";
 }
 const homeButton = document.getElementById("home-page");
-homeButton.addEventListener("click", Home);
+homeButton?.addEventListener("click", Home);
 // Back
 function goBack() {
   const activeIframe = document.querySelector("#frame-container iframe.active");
   if (activeIframe) {
     activeIframe.contentWindow.history.back();
-    iframe.src = activeIframe.src;
-    Load();
+    setTimeout(Load, 150);
   } else {
     console.error("No active iframe found");
   }
@@ -310,8 +318,7 @@ function goForward() {
   const activeIframe = document.querySelector("#frame-container iframe.active");
   if (activeIframe) {
     activeIframe.contentWindow.history.forward();
-    iframe.src = activeIframe.src;
-    Load();
+    setTimeout(Load, 150);
   } else {
     console.error("No active iframe found");
   }
@@ -320,8 +327,16 @@ function goForward() {
 document.addEventListener("DOMContentLoaded", () => {
   const tb = document.getElementById("tabs-button");
   const nb = document.getElementById("right-side-nav");
+  if (!tb || !nb) {
+    return;
+  }
+
   tb.addEventListener("click", () => {
     const activeIframe = document.querySelector("#frame-container iframe.active");
+    if (!activeIframe) {
+      return;
+    }
+
     if (nb.style.display === "none") {
       nb.style.display = "";
       activeIframe.style.top = "10%";
@@ -337,30 +352,41 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-if (navigator.userAgent.includes("Chrome")) {
+if (navigator.userAgent.includes("Chrome") && navigator.keyboard?.lock) {
   window.addEventListener("resize", () => {
     navigator.keyboard.lock(["Escape"]);
   });
 }
 function Load() {
   const activeIframe = document.querySelector("#frame-container iframe.active");
-  if (activeIframe && activeIframe.contentWindow.document.readyState === "complete") {
+  const input = document.getElementById("input");
+  if (!activeIframe || !input) {
+    return;
+  }
+
+  try {
+    if (activeIframe.contentWindow.document.readyState !== "complete") {
+      return;
+    }
+
     const website = activeIframe.contentWindow.document.location.href;
-    if (website.includes("/a/")) {
-      const websitePath = website.replace(window.location.origin, "").replace("/a/", "");
-      localStorage.setItem("decoded", websitePath);
-      const decodedValue = decodeXor(websitePath);
-      document.getElementById("input").value = decodedValue;
-    } else if (website.includes("/a/q/")) {
+    if (website.includes("/a/q/")) {
       const websitePath = website.replace(window.location.origin, "").replace("/a/q/", "");
       const decodedValue = decodeXor(websitePath);
       localStorage.setItem("decoded", websitePath);
-      document.getElementById("input").value = decodedValue;
+      input.value = decodedValue;
+    } else if (website.includes("/a/")) {
+      const websitePath = website.replace(window.location.origin, "").replace("/a/", "");
+      localStorage.setItem("decoded", websitePath);
+      const decodedValue = decodeXor(websitePath);
+      input.value = decodedValue;
     } else {
       const websitePath = website.replace(window.location.origin, "");
-      document.getElementById("input").value = websitePath;
+      input.value = websitePath;
       localStorage.setItem("decoded", websitePath);
     }
+  } catch (error) {
+    console.warn("Unable to read active tab URL:", error);
   }
 }
 function decodeXor(input) {
@@ -371,7 +397,17 @@ function decodeXor(input) {
   return (
     decodeURIComponent(str)
       .split("")
-      .map((char, ind) => (ind % 2 ? String.fromCharCode(char.charCodeAt(Number.NaN) ^ 2) : char))
+      .map((char, ind) => (ind % 2 ? String.fromCharCode(char.charCodeAt(0) ^ 2) : char))
       .join("") + (search.length ? `?${search.join("?")}` : "")
   );
 }
+
+Object.assign(window, {
+  FS,
+  Home,
+  eToggle,
+  goBack,
+  goForward,
+  popout,
+  reload,
+});

@@ -8,6 +8,8 @@ const uv = new UVServiceWorker();
 const dynamic = new Dynamic();
 
 const userKey = new URL(location).searchParams.get("userkey");
+// The imported Ultraviolet worker reads this global by name when it builds Bare requests.
+void userKey;
 self.dynamic = dynamic;
 
 self.addEventListener("fetch", event => {
