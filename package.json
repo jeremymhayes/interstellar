@@ -1,5 +1,5 @@
 {
-  "name": "interstellar",
+  "name": "jeremy-hayes-nexus",
   "version": "5.2.5",
   "type": "module",
   "engines": {
@@ -16,7 +16,7 @@
     "ship": "npm run build && npm run deploy",
     "dev": "wrangler dev"
   },
-  "author": "InterstellarNetwork",
+  "author": "Jeremy Hayes",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nebula-services/bare-server-node": "^2.0.4",

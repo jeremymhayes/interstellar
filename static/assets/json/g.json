@@ -8,9 +8,9 @@
     "custom": "true"
   },
   {
-    "name": "! Interstellar FAQ/Docs",
+    "name": "! Jeremy Hayes Nexus FAQ/Docs",
     "image": "/assets/media/icons/help_center_googlefonts.png",
-    "link": "https://docs.gointerstellar.app",
+    "link": "https://jeremymhayes.com/docs",
     "categories": [
       "all"
     ]
@@ -494,7 +494,7 @@
       "all"
     ],
     "error": "true",
-    "say": "Neal.fun does not work on Interstellar because of Cloudflare protection."
+    "say": "Neal.fun does not work on Jeremy Hayes Nexus because of Cloudflare protection."
   },
   {
     "name": "YoHoHo.io",
@@ -1370,14 +1370,6 @@
     ]
   },
   {
-    "name": "Krunker",
-    "link": "https://krunker.io",
-    "image": "/assets/media/icons/krunker.webp",
-    "categories": [
-      "all"
-    ]
-  },
-  {
     "name": "G-Switch",
     "link": "https://5dd24442-015f-11ea-ad56-9cb6d0d995f7.poki-gdn.com/4f2c69b4-3edc-4cd7-a078-efd3d1ea9fb5/index.html",
     "image": "/assets/media/icons/gswitch.webp",
@@ -2122,7 +2114,7 @@
   },
   {
     "name": "Roblox (Now.GG)",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.roblox.client&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.roblox.client&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/roblox.webp",
     "categories": [
       "all",
@@ -2132,7 +2124,7 @@
   },
   {
     "name": "Madden NFL 24",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.ea.gp.maddennfl21mobile&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.ea.gp.maddennfl21mobile&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/maddennfl24.webp",
     "categories": [
       "all",
@@ -2142,7 +2134,7 @@
   },
   {
     "name": "Android",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.uncube.launcher3&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.uncube.launcher3&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/android.webp",
     "categories": [
       "all",
@@ -2152,7 +2144,7 @@
   },
   {
     "name": "Genshin Impact",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.miHoYo.GenshinImpact&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.miHoYo.GenshinImpact&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/genshinimpact.webp",
     "categories": [
       "all",
@@ -2162,7 +2154,7 @@
   },
   {
     "name": "Fortnite (Now.GG)",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.epicgames.fortnite&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.epicgames.fortnite&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/fortnite.webp",
     "categories": [
       "all",
@@ -2172,7 +2164,7 @@
   },
   {
     "name": "EA SPORTS FC\u2122 MOBILE 24 SOCCER",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.ea.gp.fifamobile&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.ea.gp.fifamobile&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/easports-fcmobile24.webp",
     "categories": [
       "all",
@@ -2182,7 +2174,7 @@
   },
   {
     "name": "EA SPORTS\u2122 UFC\u00ae Mobile 2",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.ea.gp.easportsufc2&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.ea.gp.easportsufc2&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/easports-ufc.webp",
     "categories": [
       "all",
@@ -2192,7 +2184,7 @@
   },
   {
     "name": "Melon Playground",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.studio27.MelonPlayground&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.studio27.MelonPlayground&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/melonplayground.webp",
     "categories": [
       "all",
@@ -2202,7 +2194,7 @@
   },
   {
     "name": "Solar Smash",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.paradyme.solarsmash&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.paradyme.solarsmash&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/solarsmash.webp",
     "categories": [
       "all",
@@ -2212,7 +2204,7 @@
   },
   {
     "name": "Bloons TD Battles 2",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.ninjakiwi.bloonstdbattles2&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.ninjakiwi.bloonstdbattles2&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/bloonstd2.webp",
     "categories": [
       "all",
@@ -2222,7 +2214,7 @@
   },
   {
     "name": "Bloons TD Battles",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.ninjakiwi.bloonstdbattles&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.ninjakiwi.bloonstdbattles&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/bloonstd.webp",
     "categories": [
       "all",
@@ -2232,7 +2224,7 @@
   },
   {
     "name": "Cookie Run Kingdom",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.devsisters.ck&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.devsisters.ck&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/cookierunkingdom.webp",
     "categories": [
       "all",
@@ -2242,7 +2234,7 @@
   },
   {
     "name": "Character AI",
-    "link": "https://now.gg/iframe/snippet?app_pkg=ai.character.app&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=ai.character.app&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/characterai.webp",
     "categories": [
       "all",
@@ -2252,7 +2244,7 @@
   },
   {
     "name": "Aptoide",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.aptoide.partners.nowgg.store&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.aptoide.partners.nowgg.store&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/aptoide.webp",
     "categories": [
       "all",
@@ -2262,7 +2254,7 @@
   },
   {
     "name": "Akinator",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.digidust.elokence.akinator.freemium&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.digidust.elokence.akinator.freemium&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/akinator.webp",
     "categories": [
       "all",
@@ -2272,7 +2264,7 @@
   },
   {
     "name": "WorldBox",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.mkarpenko.worldbox&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.mkarpenko.worldbox&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/worldbox.webp",
     "categories": [
       "all",
@@ -2282,7 +2274,7 @@
   },
   {
     "name": "Toca Life World",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.tocaboca.tocalifeworld&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.tocaboca.tocalifeworld&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/tocalifeworld.webp",
     "categories": [
       "all",
@@ -2292,7 +2284,7 @@
   },
   {
     "name": "Toca Hair Salon 4",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.tocaboca.tocahairsalon4&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.tocaboca.tocahairsalon4&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/tocabocahairsalon4.webp",
     "categories": [
       "all",
@@ -2302,7 +2294,7 @@
   },
   {
     "name": "Toca Kitchen 2",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.tocaboca.tocakitchen2&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.tocaboca.tocakitchen2&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/tocakitchen2.webp",
     "categories": [
       "all",
@@ -2312,7 +2304,7 @@
   },
   {
     "name": "Free Fire",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.dts.freefireth&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.dts.freefireth&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/freefire.webp",
     "categories": [
       "all",
@@ -2322,7 +2314,7 @@
   },
   {
     "name": "Stumble Guys (Android)",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.kitkagames.fallbuddies&partner=interstellar",
+    "link": "https://now.gg/iframe/snippet?app_pkg=com.kitkagames.fallbuddies&partner=jeremy-hayes-nexus",
     "image": "/assets/media/icons/stumble-guys.webp",
     "categories": [
       "all",
@@ -2481,15 +2473,6 @@
     "categories": [
       "all",
       "2P"
-    ]
-  },
-  {
-    "name": "2048",
-    "link": "/e/1/2048/index.html",
-    "image": "/assets/media/icons/2048.webp",
-    "categories": [
-      "all",
-      "local"
     ]
   },
   {
@@ -2739,19 +2722,52 @@
     ]
   },
   {
-    "name": "Hextris",
-    "link": "https://hextris.io/",
+    "name": "2048 (Official)",
+    "link": "https://play2048.co/",
+    "image": "/assets/media/icons/2048.webp",
+    "categories": [
+      "all"
+    ]
+  },
+  {
+    "name": "Hextris (Official)",
+    "link": "https://hextris.github.io/hextris/",
     "image": "/assets/media/icons/custom.webp",
     "categories": [
       "all"
     ]
   },
   {
-    "name": "Tetris",
-    "link": "https://tetris.com/play-tetris",
+    "name": "Pacman (GitHub Pages)",
+    "link": "https://lcov29.github.io/pacman/",
     "image": "/assets/media/icons/custom.webp",
     "categories": [
       "all"
+    ]
+  },
+  {
+    "name": "Luzhanqi (GitHub Pages)",
+    "link": "https://wongkaho2626.github.io/Luzhanqi/",
+    "image": "/assets/media/icons/custom.webp",
+    "categories": [
+      "all"
+    ]
+  },
+  {
+    "name": "Snake (GitHub Pages)",
+    "link": "https://donno2048.github.io/snake/",
+    "image": "/assets/media/icons/snake.webp",
+    "categories": [
+      "all"
+    ]
+  },
+  {
+    "name": "EmulatorJS Demo",
+    "link": "https://emulatorjs.github.io/EmulatorJS/",
+    "image": "/assets/media/icons/webretro.webp",
+    "categories": [
+      "all",
+      "emu"
     ]
   }
 ]

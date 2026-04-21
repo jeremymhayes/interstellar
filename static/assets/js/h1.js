@@ -130,13 +130,13 @@ const SplashT = [
   "Over 8 Million Users since 2023",
   "Fastest growing proxy server",
   "Made by xBubbo",
-  "Check out discord.gg/interstellar :)",
+  "Check out jeremymhayes.com/support :)",
   "Thanks for using the site",
-  "Follow us on Tiktok (@useinterstellar)",
+  "Follow us on Tiktok (@jeremymhayes)",
   "Subscribe to us on YouTube (@unblocking)",
   "Subscribe to my Youtube (@xbubbo)",
   "Check out the settings page",
-  "Check out our Patreon (https://www.patreon.com/gointerstellar)",
+  "Check out our Patreon (https://jeremymhayes.com/support)",
 ];
 
 let SplashI = Math.floor(Math.random() * SplashT.length);
