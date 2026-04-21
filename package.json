@@ -1,5 +1,5 @@
 {
-  "name": "interstellar",
+  "name": "jeremy-hayes-nexus",
   "version": "5.2.5",
   "type": "module",
   "engines": {
@@ -10,9 +10,13 @@
     "start": "node index.js",
     "format": "pnpm biome format --write .",
     "precommit": "pnpm run format && pnpm biome check --write .",
-    "lint": "biome lint --write ."
+    "lint": "biome lint --write .",
+    "build": "wrangler deploy --dry-run",
+    "deploy": "wrangler deploy",
+    "ship": "npm run build && npm run deploy",
+    "dev": "wrangler dev"
   },
-  "author": "InterstellarNetwork",
+  "author": "Jeremy Hayes",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nebula-services/bare-server-node": "^2.0.4",
@@ -26,7 +30,8 @@
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.2"
+    "@biomejs/biome": "2.2.2",
+    "wrangler": "^4.12.0"
   },
   "packageManager": "pnpm@9.10.0"
 }

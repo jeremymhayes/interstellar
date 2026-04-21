@@ -1,15 +1,15 @@
 <div align="center">
-    <img src="https://raw.githubusercontent.com/UseInterstellar/Interstellar/main/.github/branding/in.png">
+    <img src="https://raw.githubusercontent.com/jeremymhayes/jeremy-hayes-nexus/main/.github/branding/in.png">
     <p>Serving over 15 million users since 2022.<p>
-    <p>Interstellar is a web proxy with a Clean and Sleek UI and easy to use menus. Our goal is to provide the best user experience to everyone.</p>
+    <p>Jeremy Hayes Nexus is a web proxy with a Clean and Sleek UI and easy to use menus. Our goal is to provide the best user experience to everyone.</p>
 </div>
 
-![inpreview](https://github.com/UseInterstellar/Interstellar/assets/89202835/2669efed-5186-4932-83c4-725acae60bd2)
+![inpreview](https://github.com/jeremymhayes/jeremy-hayes-nexus/assets/89202835/2669efed-5186-4932-83c4-725acae60bd2)
 
 > [!IMPORTANT]
 > If you fork this project, consider giving it a star in the original repository!
 
-**Join Our [Discord Community](https://discord.gg/interstellar) for support, more links, and an active community!**
+**Need help? Visit [jeremymhayes.com/support](https://jeremymhayes.com/support) for support resources and updates.**
 
 ## Features
 
@@ -30,6 +30,47 @@
 > [!IMPORTANT]
 > You **cannot** deploy to static web hosts, including Netlify, Cloudflare Pages, and GitHub Pages.
 
+### Cloudflare Workers
+
+This repository now includes a Worker entrypoint (`worker.js`) and Wrangler config (`wrangler.toml`) so you can deploy directly to Cloudflare Workers.
+No custom domain is required; the default `*.workers.dev` domain works out of the box.
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Authenticate Wrangler once:
+
+```bash
+npx wrangler login
+```
+
+3. Build check (good for a Git-cloned Worker with a build command):
+
+```bash
+npm run build
+```
+
+You can also run locally with:
+
+```bash
+npm run dev
+```
+
+Or manually deploy from your machine:
+
+```bash
+npm run deploy
+```
+
+Single-command build + deploy:
+
+```bash
+npm run ship
+```
+
 ### Password Protection
 
 1. Go to the `config.js` file and set `challenge` to **true**. Then, set the environment variable as follows:
@@ -43,15 +84,15 @@
 You must run these commands on your server:
 
 ```bash
-git clone https://github.com/UseInterstellar/Interstellar
-cd Interstellar
+git clone https://github.com/jeremymhayes/jeremy-hayes-nexus
+cd jeremy-hayes-nexus
 ```
 
 #### Ad-Free Deployment
 
 ```bash
-git clone --branch Ad-Free https://github.com/UseInterstellar/Interstellar
-cd Interstellar
+git clone --branch Ad-Free https://github.com/jeremymhayes/jeremy-hayes-nexus
+cd jeremy-hayes-nexus
 ```
 
 Next depending on your package manager, run one of the following commands:
@@ -86,16 +127,16 @@ npm run start
 ### Updating
 
 ```bash
-cd Interstellar
+cd jeremy-hayes-nexus
 git pull --force --allow-unrelated-histories # This may overwrite your local changes
 ```
 
-<a target="_blank" href="https://heroku.com/deploy/?template=https://github.com/UseInterstellar/Interstellar"><img alt="Deploy to Heroku" src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/heroku.svg"></a>
-<a target="_blank" href="https://app.koyeb.com/deploy?type=git&repository=github.com/UseInterstellar/Interstellar"><img alt="Deploy to Koyeb" src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/koyeb.svg"></a>
+<a target="_blank" href="https://heroku.com/deploy/?template=https://github.com/jeremymhayes/jeremy-hayes-nexus"><img alt="Deploy to Heroku" src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/heroku.svg"></a>
+<a target="_blank" href="https://app.koyeb.com/deploy?type=git&repository=github.com/jeremymhayes/jeremy-hayes-nexus"><img alt="Deploy to Koyeb" src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/koyeb.svg"></a>
 
 ### Deployment Alternatives
 
-For more deployment options, join our [Discord Server](https://discord.gg/interstellar) for various ways to deploy Interstellar.
+For more deployment options, visit [jeremymhayes.com/support](https://jeremymhayes.com/support) for various ways to deploy Jeremy Hayes Nexus.
 This includes methods of deploying to Render/OnRender.
 
 #### What happened to Replit Deployment?
@@ -125,17 +166,17 @@ As of January 1st, 2024, Replit is [no longer free](https://blog.replit.com/host
 4. Right-click Visibility and set Port Visibility to Public.
 
 > [!NOTE]
-> We are committed to making Interstellar easy and personalized however, as of now we need your support in making it ad-free. Consider keeping ads so Interstellar can run freely or contribute by being a supporter.
+> We are committed to making Jeremy Hayes Nexus easy and personalized however, as of now we need your support in making it ad-free. Consider keeping ads so Jeremy Hayes Nexus can run freely or contribute by being a supporter.
 
 ## Report Issues
 
 If you encounter problems, open an issue on GitHub, and we'll address it promptly.
 
 > [!TIP]
-> If you're having trouble, don't hesitate to reach out to us on [Discord](https://discord.gg/interstellar) for personalized support.
+> If you're having trouble, don't hesitate to reach out at [jeremymhayes.com/support](https://jeremymhayes.com/support).
 
 # Credits
 
-A huge thanks goes out to all of the people who have contributed to Interstellar.
+A huge thanks goes out to all of the people who have contributed to Jeremy Hayes Nexus.
 
-[![Contributors](https://contrib.rocks/image?repo=UseInterstellar/Interstellar)](https://github.com/UseInterstellar/Interstellar/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=jeremymhayes/jeremy-hayes-nexus)](https://github.com/jeremymhayes/jeremy-hayes-nexus/graphs/contributors)
