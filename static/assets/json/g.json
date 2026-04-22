@@ -50,14 +50,6 @@
     ]
   },
   {
-    "name": "Newgrounds",
-    "link": "https://newgrounds.com/",
-    "image": "/assets/media/icons/newgrounds.webp",
-    "categories": [
-      "all"
-    ]
-  },
-  {
     "name": "Pranx",
     "link": "https://pranx.com/",
     "image": "/assets/media/icons/pranx.webp",
@@ -1026,7 +1018,7 @@
   },
   {
     "name": "2D Rocket League",
-    "link": "https://v6p9d9t4.ssl.hwcdn.net/html/3325334/index.html",
+    "link": "https://julian-reyes.github.io/2D-Rocket-League/",
     "image": "/assets/media/icons/2D-Rocket-League.webp",
     "categories": [
       "all"
@@ -1178,7 +1170,7 @@
   },
   {
     "name": "Cat Ninja",
-    "link": "https://4iapq88o5f3gc1dij3it0mp5jojnm3jr-a-sites-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%252Fcat-ninja.xml",
+    "link": "https://hotgame.io/game/cat-ninja/",
     "image": "/assets/media/icons/cat-ninja.webp",
     "categories": [
       "all"
@@ -1243,7 +1235,7 @@
   },
   {
     "name": "Deepest Sword",
-    "link": "https://v6p9d9t4.ssl.hwcdn.net/html/4017918/index.html",
+    "link": "https://cosmicadventuresquad.itch.io/deepest-sword",
     "image": "/assets/media/icons/deepest-sword.webp",
     "categories": [
       "all"
@@ -1469,7 +1461,7 @@
   },
   {
     "name": "Interactive Buddy",
-    "link": "https://f.silvergames.com/ruffle/player.php?id=204",
+    "link": "https://flash-games.io/interactive-buddy",
     "image": "/assets/media/icons/interactive-buddy.webp",
     "categories": [
       "all"
@@ -1726,7 +1718,7 @@
   },
   {
     "name": "Pokemon Heart Gold",
-    "link": "https://static.arcadespot.com/retroemulator.php?system=nds&game=2017/10/pokemon-heartgold-version1.zip",
+    "link": "https://www.juegossd.com/game/pokemon-heart-gold",
     "image": "/assets/media/icons/heartgold.webp",
     "categories": [
       "all"
@@ -1750,7 +1742,7 @@
   },
   {
     "name": "Deal or No Deal",
-    "link": "https://f.kbhgames.com/RS/game.php?r=//f.kbhgames.com/2018/swf/dondeal2.swf&w=640&h=480&warnsupport=true",
+    "link": "https://ta05.github.io/Deal-Or-No-Deal/index.html",
     "image": "/assets/media/icons/deal-or-no-deal.webp",
     "categories": [
       "all"
@@ -1911,7 +1903,7 @@
   },
   {
     "name": "Sandboxels",
-    "link": "https://v6p9d9t4.ssl.hwcdn.net/html/5808591/index.html",
+    "link": "https://sandboxelsgame.com/",
     "image": "/assets/media/icons/sandboxels.webp",
     "categories": [
       "all"
@@ -1999,7 +1991,7 @@
   },
   {
     "name": "Super Mario 63",
-    "link": "https://www.numuki.com/gameframe/super-mario-63",
+    "link": "https://pisaucer.github.io/boredhtml/games/supermario63/",
     "image": "/assets/media/icons/sm63.webp",
     "categories": [
       "all"
@@ -2056,7 +2048,7 @@
   },
   {
     "name": "The Simpsons",
-    "link": "https://static.arcadespot.com/retroemulator.php?system=nds&game=2017/11/the-simpsons-game.zip",
+    "link": "https://3kh0s.github.io/games/simpsonsroadrage/index.html",
     "image": "/assets/media/icons/the-simpsons-game.webp",
     "categories": [
       "all"
