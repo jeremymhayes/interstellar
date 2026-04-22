@@ -273,7 +273,7 @@ fetch(path)
     appInd = 0;
 
     for (const app of appsList) {
-      if (app.categories?.includes("local")) {
+      if (typeof app.link === "string" && app.link.startsWith("/")) {
         app.local = true;
       } else if (app.link && (app.link.includes("now.gg") || app.link.includes("nowgg.me"))) {
         if (app.partial === null || app.partial === undefined) {

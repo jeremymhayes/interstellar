@@ -11,6 +11,8 @@
     "format": "pnpm biome format --write .",
     "precommit": "pnpm run format && pnpm biome check --write .",
     "lint": "biome lint --write .",
+    "games:audit:network": "node ./scripts/audit-games.mjs --mode network",
+    "games:audit:browser": "node ./scripts/audit-games.mjs --mode browser",
     "build": "wrangler deploy --dry-run",
     "deploy": "wrangler deploy",
     "ship": "npm run build && npm run deploy",
@@ -31,6 +33,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.2",
+    "playwright-core": "^1.59.1",
     "wrangler": "^4.12.0"
   },
   "packageManager": "pnpm@9.10.0"

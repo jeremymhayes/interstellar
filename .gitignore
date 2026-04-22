@@ -4,3 +4,7 @@ node_modules
 .hintrc
 .gitpod.yml 
 .env
+.wrangler
+*-input.json
+*-scan.json
+games-network-audit.tmp.json

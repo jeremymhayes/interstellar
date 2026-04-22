@@ -10,10 +10,11 @@
   {
     "name": "! Interstellar FAQ/Docs",
     "image": "/assets/media/icons/help_center_googlefonts.png",
-    "link": "https://docs.gointerstellar.app",
+    "link": "https://github.com/UseInterstellar/Interstellar#readme",
     "categories": [
       "all"
-    ]
+    ],
+    "say": "Documentation now points to the repository README."
   },
   {
     "name": "! [NEW] Request A Game",
@@ -134,7 +135,7 @@
   },
   {
     "name": "Rooftop Snipers 2",
-    "link": "https://h5cdn.github.io/s6/rooftop-snipers-2/",
+    "link": "https://3kh0s.github.io/games/rooftop2/index.html",
     "image": "/assets/media/icons/rooftopsnipers2.webp",
     "categories": [
       "all"
@@ -192,7 +193,7 @@
   },
   {
     "name": "The Impossible Quiz",
-    "link": "https://the-impossible-quiz.game-files.crazygames.com/ruffle/theimpossiblequiz.html",
+    "link": "https://3kh0s.github.io/games/theimpossiblequiz/index.html",
     "image": "/assets/media/icons/theimpossiblequiz.webp",
     "categories": [
       "all"
@@ -200,7 +201,7 @@
   },
   {
     "name": "Helix Jump",
-    "link": "https://helix-jump.game-files.crazygames.com/helix-jump/1/index.html",
+    "link": "https://3kh0s.github.io/games/helixjump/index.html",
     "image": "/assets/media/icons/helixjump.webp",
     "categories": [
       "all"
@@ -234,7 +235,7 @@
   },
   {
     "name": "Age of War",
-    "link": "https://age-of-war.game-files.crazygames.com/ruffle/ageofwar.html",
+    "link": "https://3kh0s.github.io/games/ageofwar/index.html",
     "image": "/assets/media/icons/ageofwar.webp",
     "categories": [
       "all",
@@ -251,7 +252,7 @@
   },
   {
     "name": "Gladihoppers",
-    "link": "https://bonbang.github.io/store99/gladihoppers/index.html",
+    "link": "https://slopeplay.github.io/games/gladihoppers/",
     "image": "/assets/media/icons/gladihoppers.webp",
     "categories": [
       "all"
@@ -267,7 +268,7 @@
   },
   {
     "name": "3 Slices",
-    "link": "https://images-opensocial.googleusercontent.com/gadgets/ifr?url=https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/1ee20621-61bc-4ec8-a8ec-5e839c2e6edc%2F3-slices.xml",
+    "link": "https://www.bubblebox.com/play/2746/3-slices.htm",
     "image": "/assets/media/icons/3slices.webp",
     "categories": [
       "all"
@@ -411,7 +412,7 @@
   },
   {
     "name": "Stickman Hook",
-    "link": "/e/stickman-hook/index.html",
+    "link": "https://3kh0s.github.io/games/stickmanhook/index.html",
     "image": "/assets/media/icons/stickmanhook.webp",
     "categories": [
       "all",
@@ -420,7 +421,7 @@
   },
   {
     "name": "Tube Jumpers",
-    "link": "https://unblocked76.github.io/tube-jumpers/",
+    "link": "https://3kh0s.github.io/games/tubejumpers/index.html",
     "image": "/assets/media/icons/tubejumpers.webp",
     "categories": [
       "all",
@@ -549,7 +550,7 @@
   },
   {
     "name": "Jetpack Joyride",
-    "link": "/e/jetpack-joyride/index.html",
+    "link": "https://3kh0s.github.io/games/jetpackjoyride/index.html",
     "image": "/assets/media/icons/jetpackjoyride.webp",
     "categories": [
       "all",
@@ -558,7 +559,7 @@
   },
   {
     "name": "FeedVid",
-    "link": "https://v6p9d9t4.ssl.hwcdn.net/html/4941980-683813/index.html",
+    "link": "https://horrorgames.io/feedvid",
     "image": "/assets/media/icons/feedvid.webp",
     "categories": [
       "all"
@@ -583,7 +584,7 @@
   },
   {
     "name": "Happy Wheels",
-    "link": "https://files.crazygames.com/ruffle/happywheels.html",
+    "link": "https://3kh0s.github.io/games/happywheels/index.html",
     "image": "/assets/media/icons/happywheels.webp",
     "categories": [
       "all"
@@ -623,7 +624,7 @@
   },
   {
     "name": "Riddle School 1",
-    "link": "https://uploads.ungrounded.net/ruffle_wrapper/ruffleembed.html?v=1.0.67&browsermode=default&props=%7B%22ruffle%22%3A%22%2Fruffle_wrapper%2Flib%2Fruffle.js%3F1695474658%22%2C%22public_path%22%3A%22%2Fruffle_wrapper%2Flib%2F%22%2C%22swf%22%3A%22https%3A%2F%2Fuploads.ungrounded.net%2F314000%2F314680_Riddle_School.swf%3F1148577264%22%2C%22vars%22%3A%7B%22NewgroundsAPI_PublisherID%22%3A1%2C%22NewgroundsAPI_SandboxID%22%3A%2265103f0745c96%22%2C%22NewgroundsAPI_SessionID%22%3A%22%22%2C%22NewgroundsAPI_UserName%22%3A%22%26lt%3Bdeleted%26gt%3B%22%2C%22NewgroundsAPI_UserID%22%3A0%2C%22ng_username%22%3A%22%26lt%3Bdeleted%26gt%3B%22%7D%2C%22width%22%3A550%2C%22height%22%3A400%2C%22icon%22%3A%22https%3A%2F%2Fpicon.ngfiles.com%2F314000%2Fflash_314680_card.webp%3Ff1607914286%22%2C%22warnOnUnsupportedContent%22%3Afalse%7D",
+    "link": "https://3kh0s.github.io/games/riddleschool/riddleschool1/index.html",
     "image": "/assets/media/icons/riddle-school.webp",
     "categories": [
       "all"
@@ -640,7 +641,7 @@
   },
   {
     "name": "Papa's Scooperia",
-    "link": "https://files.crazygames.com/ruffle/papasscooperia.html",
+    "link": "https://3kh0s.github.io/games/papasscooperia/index.html",
     "image": "/assets/media/icons/papasscooperia.webp",
     "categories": [
       "all"
@@ -648,7 +649,7 @@
   },
   {
     "name": "Papa's Sushiria",
-    "link": "https://files.crazygames.com/ruffle/papassushiria.html",
+    "link": "https://3kh0s.github.io/games/papassushiria/index.html",
     "image": "/assets/media/icons/papassushiria.webp",
     "categories": [
       "all"
@@ -656,7 +657,7 @@
   },
   {
     "name": "Burrito Bison",
-    "link": "https://f.silvergames.com/awayfl/index.html?swf=burrito-bison.swf",
+    "link": "https://3kh0s.github.io/games/burritobison/index.html",
     "image": "/assets/media/icons/burritobison.webp",
     "categories": [
       "all"
@@ -784,7 +785,7 @@
   },
   {
     "name": "Duck Life 4",
-    "link": "/e/ducklife4/index.html",
+    "link": "https://3kh0s.github.io/games/ducklife4/index.html",
     "image": "/assets/media/icons/dl4.webp",
     "categories": [
       "all",
@@ -867,7 +868,7 @@
   },
   {
     "name": "FNAF Web",
-    "link": "https://wellsousaaa.github.io/Five-Nights-at-Freddys-Web/",
+    "link": "https://3kh0s.github.io/games/fnaf/index.html",
     "image": "/assets/media/icons/FNAFWeb.webp",
     "categories": [
       "all"
@@ -875,7 +876,7 @@
   },
   {
     "name": "Riddle School 4",
-    "link": "https://riddle-school-4.game-files.crazygames.com/ruffle/riddleschool4.html",
+    "link": "https://3kh0s.github.io/games/riddleschool/riddleschool4/index.html",
     "image": "/assets/media/icons/rs4.webp",
     "categories": [
       "all"
@@ -883,7 +884,7 @@
   },
   {
     "name": "Riddle School 5",
-    "link": "https://riddle-school-5.game-files.crazygames.com/ruffle/riddleschool5.html",
+    "link": "https://3kh0s.github.io/games/riddleschool/riddleschool5/index.html",
     "image": "/assets/media/icons/rs5.webp",
     "categories": [
       "all"
@@ -972,7 +973,7 @@
   },
   {
     "name": "Web Retro",
-    "link": "/e/index.html",
+    "link": "https://binbashbanana.github.io/webretro/",
     "image": "/assets/media/icons/webretro.webp",
     "categories": [
       "all,",
@@ -1016,7 +1017,7 @@
   },
   {
     "name": "1v1.LOL",
-    "link": "https://1v1.lol",
+    "link": "https://3kh0s.github.io/games/1v1lol/index.html",
     "image": "/assets/media/icons/1v1-lol.webp",
     "categories": [
       "all,",
@@ -1065,7 +1066,7 @@
   },
   {
     "name": "Ace Attorney",
-    "link": "https://f.kbhgames.com/r/gba/?r=ace-attorney",
+    "link": "https://3kh0s.github.io/games/aceattorney/index.html",
     "image": "/assets/media/icons/aa.webp",
     "categories": [
       "all"
@@ -1073,7 +1074,7 @@
   },
   {
     "name": "AC - Wild World",
-    "link": "https://static.arcadespot.com/retroemulator.php?system=nds&game=2017/10/animal-crossing-wild-world1.zip",
+    "link": "https://3kh0s.github.io/games/animalcrossingwildworld/index.html",
     "image": "/assets/media/icons/acww.webp",
     "categories": [
       "all"
@@ -1129,7 +1130,7 @@
   },
   {
     "name": "Basketball Bros",
-    "link": "https://www.basketbros.io/",
+    "link": "https://3kh0s.github.io/games/basketbrosio/index.html",
     "image": "/assets/media/icons/basket-bros.webp",
     "categories": [
       "all"
@@ -1226,7 +1227,7 @@
   },
   {
     "name": "Cookie Clicker",
-    "link": "https://orteil.dashnet.org/cookieclicker/",
+    "link": "https://3kh0s.github.io/games/cookieclicker/index.html",
     "image": "/assets/media/icons/cookieclicker.webp",
     "categories": [
       "all"
@@ -1267,7 +1268,7 @@
   },
   {
     "name": "Doom 1",
-    "link": "https://browncha023.github.io/GBA/launcher.html#dm",
+    "link": "https://3kh0s.github.io/games/doom/index.html",
     "image": "/assets/media/icons/DOOM.webp",
     "categories": [
       "all"
@@ -1275,7 +1276,7 @@
   },
   {
     "name": "Doom 2",
-    "link": "https://browncha023.github.io/GBA/launcher.html#dm2",
+    "link": "https://3kh0s.github.io/games/doom2/index.html",
     "image": "/assets/media/icons/doom2.webp",
     "categories": [
       "all"
@@ -1299,7 +1300,7 @@
   },
   {
     "name": "Drift Hunters",
-    "link": "https://webglmath.github.io/drift-hunters/",
+    "link": "https://3kh0s.github.io/games/drifthunters/index.html",
     "image": "/assets/media/icons/drift-hunters.webp",
     "categories": [
       "all"
@@ -1331,7 +1332,7 @@
   },
   {
     "name": "Friday Night Funkin'",
-    "link": "https://w8.snokido.com/games/html5/friday-night-funkin/0281/index.html",
+    "link": "https://3kh0s.github.io/games/fnf/index.html",
     "image": "/assets/media/icons/fnf.webp",
     "categories": [
       "all"
@@ -1355,7 +1356,7 @@
   },
   {
     "name": "JustFall.LOL",
-    "link": "https://justfall.lol",
+    "link": "https://3kh0s.github.io/games/justfalllol/index.html",
     "image": "/assets/media/icons/just-fall-lol.webp",
     "categories": [
       "all"
@@ -1403,7 +1404,7 @@
   },
   {
     "name": "Golden Eye 007",
-    "link": "https://f.kbhgames.com/r/n64/game.php?file=007-golden-eye.zip",
+    "link": "https://3kh0s.github.io/games/goldeneye007/index.html",
     "image": "/assets/media/icons/golden-eye-007.webp",
     "categories": [
       "all"
@@ -1524,7 +1525,7 @@
   },
   {
     "name": "Mario Kart 64",
-    "link": "https://static.arcadespot.com/retroemulator.php?system=n64&game=2017/06/mario-kart-64.zip",
+    "link": "https://3kh0s.github.io/games/mariokart64/index.html",
     "image": "/assets/media/icons/mario-kart-64.webp",
     "categories": [
       "all"
@@ -1557,7 +1558,7 @@
   },
   {
     "name": "Mortal Kombat 4",
-    "link": "https://f.kbhgames.com/r/n64/game.php?file=Mortal-Kombat-4-U.zip",
+    "link": "https://3kh0s.github.io/games/mortalkombat4/index.html",
     "image": "/assets/media/icons/mortal-kombat-4.webp",
     "categories": [
       "all"
@@ -1581,7 +1582,7 @@
   },
   {
     "name": "MX3M: Pool Party",
-    "link": "https://h0jokl1egt0fd4oc8qv3j0tltl9jbqhn-a-sites-opensocial.googleusercontent.com/gadgets/ifr?url=https://649025137-174029463385024710.preview.editmysite.com/uploads/b/139890129-767696982876512205/files/mx3mpp.xml",
+    "link": "https://3kh0s.github.io/games/motox3mpool/index.html",
     "image": "/assets/media/icons/mx3m.webp",
     "categories": [
       "all"
@@ -1597,7 +1598,7 @@
   },
   {
     "name": "MX3M: Winter",
-    "link": "https://www-sites-opensocial.googleusercontent.com/gadgets/ifr?url=https://sites.google.com/site/s017q3e/moto-x3m-4-winter.xml",
+    "link": "https://3kh0s.github.io/games/motox3mwinter/index.html",
     "image": "/assets/media/icons/mx3m-winter.webp",
     "categories": [
       "all"
@@ -1621,7 +1622,7 @@
   },
   {
     "name": "OvO",
-    "link": "https://8rlfg0ch3417et18dp8lvps6uo7c3b2c-a-sites-opensocial.googleusercontent.com/gadgets/ifr?url=https://427396048-642845047394716217.preview.editmysite.com/uploads/b/139890129-761103484729797659/files/ovo.xml",
+    "link": "https://3kh0s.github.io/games/ovo/index.html",
     "image": "/assets/media/icons/ovo.webp",
     "categories": [
       "all"
@@ -1645,7 +1646,7 @@
   },
   {
     "name": "Papa's Bakeria",
-    "link": "https://f.silvergames.com/emu/waffle/?id=5458",
+    "link": "https://3kh0s.github.io/games/papasbakeria/index.html",
     "image": "/assets/media/icons/bakeria.webp",
     "categories": [
       "all"
@@ -1653,7 +1654,7 @@
   },
   {
     "name": "Papa's Cupcakeria",
-    "link": "https://f.silvergames.com/emu/waffle/?id=3246",
+    "link": "https://3kh0s.github.io/games/papascupcakeria/index.html",
     "image": "/assets/media/icons/cupcakeria.webp",
     "categories": [
       "all"
@@ -1661,7 +1662,7 @@
   },
   {
     "name": "Papa Louie 1",
-    "link": "https://f.silvergames.com/ruffle/player.php?id=1373",
+    "link": "https://3kh0s.github.io/games/papalouie/index.html",
     "image": "/assets/media/icons/louie1.webp",
     "categories": [
       "all"
@@ -1669,7 +1670,7 @@
   },
   {
     "name": "Papa Louie 2",
-    "link": "https://f.silvergames.com/emu/waffle/?id=3042",
+    "link": "https://3kh0s.github.io/games/papalouie2/index.html",
     "image": "/assets/media/icons/louie2.webp",
     "categories": [
       "all"
@@ -1677,7 +1678,7 @@
   },
   {
     "name": "Papa Louie 3",
-    "link": "https://f.silvergames.com/emu/waffle/?id=4693",
+    "link": "https://3kh0s.github.io/games/papalouie3/index.html",
     "image": "/assets/media/icons/papa-louie-3.webp",
     "categories": [
       "all"
@@ -1685,7 +1686,7 @@
   },
   {
     "name": "Papa's Pizzeria",
-    "link": "https://f.silvergames.com/ruffle/player.php?id=1360",
+    "link": "https://3kh0s.github.io/games/papaspizzaria/index.html",
     "image": "/assets/media/icons/pizzeria.webp",
     "categories": [
       "all"
@@ -1693,7 +1694,7 @@
   },
   {
     "name": "Paper Mario 64",
-    "link": "https://f.kbhgames.com/r/n64/game.php?file=Paper%20Mario%20(USA).zip",
+    "link": "https://3kh0s.github.io/games/papermario/index.html",
     "image": "/assets/media/icons/paper-mario-64.webp",
     "categories": [
       "all"
@@ -1709,7 +1710,7 @@
   },
   {
     "name": "Pixel Shooter",
-    "link": "https://94bfktj403i6m18as4vkvtreqd0ohci4-a-sites-opensocial.googleusercontent.com/gadgets/ifr?url=https://274019683-173520394482650759.preview.editmysite.com/uploads/b/139890129-131715539788281629/files/ps.xml",
+    "link": "https://pixel-shooter.github.io/",
     "image": "/assets/media/icons/pixel-shooter.webp",
     "categories": [
       "all"
@@ -1717,7 +1718,7 @@
   },
   {
     "name": "Pizza Tower",
-    "link": "https://gamaverse.com/c/e/g/pizza-tower-1678640389/index.html",
+    "link": "https://3kh0s.github.io/games/pizzatower/index.html",
     "image": "/assets/media/icons/pizza-tower.webp",
     "categories": [
       "all"
@@ -1773,7 +1774,7 @@
   },
   {
     "name": "Doodle Jump",
-    "link": "https://doodlejump.pro/",
+    "link": "https://3kh0s.github.io/games/doodlejump/index.html",
     "image": "/assets/media/icons/doodlejump.webp",
     "categories": [
       "all"
@@ -1862,7 +1863,7 @@
   },
   {
     "name": "Red Ball 4 Vol. 3",
-    "link": "https://www.algebrashelper.com/red-ball-4v3",
+    "link": "https://www.bubbleshooter.net/game/red-ball-4-vol-3/",
     "image": "/assets/media/icons/redball4vol3.webp",
     "categories": [
       "all"
@@ -1870,7 +1871,7 @@
   },
   {
     "name": "Riddle School 2",
-    "link": "https://f.silvergames.com/ruffle/player.php?id=8564",
+    "link": "https://3kh0s.github.io/games/riddleschool/riddleschool2/index.html",
     "image": "/assets/media/icons/rs2.webp",
     "categories": [
       "all"
@@ -1878,7 +1879,7 @@
   },
   {
     "name": "Riddle School 3",
-    "link": "https://riddle-school-3.game-files.crazygames.com/ruffle/riddleschool3.html",
+    "link": "https://3kh0s.github.io/games/riddleschool/riddleschool3/index.html",
     "image": "/assets/media/icons/rs3.webp",
     "categories": [
       "all"
@@ -1886,7 +1887,7 @@
   },
   {
     "name": "Rocket Pult",
-    "link": "https://v6p9d9t4.ssl.hwcdn.net/html/565140/index.html",
+    "link": "https://23-azo.github.io/play/rocket-pult.html",
     "image": "/assets/media/icons/rocketpult.webp",
     "categories": [
       "all"
@@ -1942,7 +1943,7 @@
   },
   {
     "name": "Smash Bros 64",
-    "link": "https://emulatorgames.online/games/n64/super-smash-bros",
+    "link": "https://3kh0s.github.io/games/supersmashbros/index.html",
     "image": "/assets/media/icons/super-smash-bros-64.webp",
     "categories": [
       "all"
@@ -2006,7 +2007,7 @@
   },
   {
     "name": "Super Mario 64",
-    "link": "https://f.kbhgames.com/r/n64/game.php?file=32112_super-mario-64-usa.zip",
+    "link": "https://3kh0s.github.io/games/sm64/index.html",
     "image": "/assets/media/icons/sm64.webp",
     "categories": [
       "all"
@@ -2014,7 +2015,7 @@
   },
   {
     "name": "Super Smash Flash",
-    "link": "https://f.kbhgames.com/RS/game.php?r=//f.kbhgames.com/2018/swf/smashflash.swf&w=1521&h=753",
+    "link": "https://3kh0s.github.io/games/supersmashflash/index.html",
     "image": "/assets/media/icons/ssf1.webp",
     "categories": [
       "all"
@@ -2038,7 +2039,7 @@
   },
   {
     "name": "Temple of Boom",
-    "link": "https://temple-of-boom.github.io/file/",
+    "link": "https://aug66.github.io/temple-of-boom.html",
     "image": "/assets/media/icons/templeofboom.webp",
     "categories": [
       "all",
@@ -2171,7 +2172,7 @@
     ]
   },
   {
-    "name": "EA SPORTS FC\u2122 MOBILE 24 SOCCER",
+    "name": "EA SPORTS FC™ MOBILE 24 SOCCER",
     "link": "https://now.gg/iframe/snippet?app_pkg=com.ea.gp.fifamobile&partner=interstellar",
     "image": "/assets/media/icons/easports-fcmobile24.webp",
     "categories": [
@@ -2181,7 +2182,7 @@
     ]
   },
   {
-    "name": "EA SPORTS\u2122 UFC\u00ae Mobile 2",
+    "name": "EA SPORTS™ UFC® Mobile 2",
     "link": "https://now.gg/iframe/snippet?app_pkg=com.ea.gp.easportsufc2&partner=interstellar",
     "image": "/assets/media/icons/easports-ufc.webp",
     "categories": [
@@ -2556,7 +2557,7 @@
   },
   {
     "name": "The Impossible Quiz: Book 2",
-    "link": "https://f.silvergames.com/ruffle/player.php?id=3742",
+    "link": "https://3kh0s.github.io/games/theimpossiblequiz2/index.html",
     "image": "/assets/media/icons/book2.webp",
     "categories": [
       "all",
@@ -2573,7 +2574,7 @@
   },
   {
     "name": "Happy Wheels",
-    "link": "https://games-online.io/game/HappyWheels/",
+    "link": "https://3kh0s.github.io/games/happywheels/index.html",
     "image": "/assets/media/icons/hw.webp",
     "categories": [
       "all"
@@ -2631,7 +2632,7 @@
   },
   {
     "name": "Mario Kart DS",
-    "link": "https://seraph.reveriestudios.online/games/mariokartds/index.html",
+    "link": "https://3kh0s.github.io/games/mariokartds/index.html",
     "image": "/assets/media/icons/mariokartds.jpg",
     "categories": [
       "all",
@@ -2640,7 +2641,7 @@
   },
   {
     "name": "Cooking Mama",
-    "link": "https://seraph.reveriestudios.online/games/cookingmama/index.html",
+    "link": "https://3kh0s.github.io/games/cookingmama/index.html",
     "image": "/assets/media/icons/cookingmama.jpg",
     "categories": [
       "all",

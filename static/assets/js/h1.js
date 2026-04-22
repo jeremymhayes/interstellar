@@ -1,11 +1,4 @@
 // home.js
-let inFrame;
-
-try {
-  inFrame = window !== top;
-} catch {
-  inFrame = true;
-}
 if (!localStorage.getItem("ab")) localStorage.setItem("ab", true);
 // Removed automatic about:blank popup/cloaking flow.
 // This avoids aggressive popup behavior and keeps the default experience stable in modern browsers.
@@ -151,27 +144,4 @@ if (SplashE) {
   SplashE.innerText = SplashT[SplashI];
 
   SplashE.addEventListener("click", US);
-}
-// Random URL
-function getRandomUrl() {
-  const randomUrls = [
-    "https://kahoot.it",
-    "https://classroom.google.com",
-    "https://drive.google.com",
-    "https://google.com",
-    "https://docs.google.com",
-    "https://slides.google.com",
-    "https://www.nasa.gov",
-    "https://blooket.com",
-    "https://clever.com",
-    "https://edpuzzle.com",
-    "https://khanacademy.org",
-    "https://wikipedia.org",
-    "https://dictionary.com",
-  ];
-  return randomUrls[randRange(0, randomUrls.length)];
-}
-
-function randRange(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
 }

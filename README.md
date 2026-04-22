@@ -25,6 +25,24 @@
 - Fast Speeds
 - Geforce NOW Support
 
+## Games Maintenance
+
+The games catalog lives in `static/assets/json/g.json` and is mirrored to `static/assets/json/g.min.json`.
+
+For link validation and spot-checking gameplay starts, this repo now includes lightweight audit scripts:
+
+```bash
+pnpm games:audit:network
+pnpm games:audit:browser -- --browser-path "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+```
+
+Notes:
+
+- `games:audit:network` does a fast whole-catalog sweep and flags dead or suspicious sources.
+- `games:audit:browser` uses a local Chromium-based browser to verify the real proxied launch flow.
+- Browser audit expects the local server to be running first, for example with `pnpm start`.
+- Audit scratch files are ignored by Git so local verification runs do not dirty commits.
+
 ## Deployment
 
 > [!IMPORTANT]
