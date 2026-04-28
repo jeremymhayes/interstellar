@@ -29,6 +29,10 @@ const REMOTE_ASSET_BASE_URLS = {
   "/e/3/": "https://raw.githubusercontent.com/3v1/V5-Retro/master/",
 };
 
+function isIgnorableServerError(error) {
+  return error?.code === "ECONNRESET" || error?.code === "HPE_INVALID_EOF_STATE" || error?.message === "aborted";
+}
+
 function setCachedAsset(cacheKey, payload) {
   cache.set(cacheKey, payload);
 
@@ -136,6 +140,16 @@ app.use((err, _req, res, _next) => {
 });
 
 server.on("request", (req, res) => {
+  req.on("error", error => {
+    if (!isIgnorableServerError(error)) {
+      console.error("Request stream error:", error);
+    }
+  });
+  res.on("error", error => {
+    if (!isIgnorableServerError(error)) {
+      console.error("Response stream error:", error);
+    }
+  });
   if (bareServer.shouldRoute(req)) {
     bareServer.routeRequest(req, res);
   } else {
@@ -153,6 +167,44 @@ server.on("upgrade", (req, socket, head) => {
 
 server.on("listening", () => {
   console.log(chalk.green(`🌍 Server is running on http://localhost:${PORT}`));
+});
+
+server.on("clientError", (error, socket) => {
+  if (!isIgnorableServerError(error)) {
+    console.error("Client connection error:", error);
+  }
+
+  if (socket.writable) {
+    socket.end("HTTP/1.1 400 Bad Request\r\n\r\n");
+  }
+});
+
+server.on("connection", socket => {
+  socket.on("error", error => {
+    if (!isIgnorableServerError(error)) {
+      console.error("Socket error:", error);
+    }
+  });
+});
+
+process.on("uncaughtException", error => {
+  if (isIgnorableServerError(error)) {
+    console.warn("Ignored transient server error:", error.code ?? error.message);
+    return;
+  }
+
+  console.error("Uncaught exception:", error);
+  process.exit(1);
+});
+
+process.on("unhandledRejection", error => {
+  if (isIgnorableServerError(error)) {
+    console.warn("Ignored transient rejection:", error.code ?? error.message);
+    return;
+  }
+
+  console.error("Unhandled rejection:", error);
+  process.exit(1);
 });
 
 server.listen({ port: PORT });

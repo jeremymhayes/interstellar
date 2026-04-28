@@ -7,17 +7,30 @@ const DEFAULT_BASE_URL = "http://127.0.0.1:8080";
 const DEFAULT_TIMEOUT_MS = 15000;
 const COMMON_BROWSER_PATHS = ["C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe", "C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe", "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"];
 const ERROR_PATTERNS = [
-  /1016/i,
+  /error(?: code)?\s*1016/i,
   /404 not found/i,
+  /404[:|]\s*that page is mia/i,
+  /404:\s*this page could not be found/i,
   /418 forbidden/i,
   /429 too many requests/i,
   /access denied/i,
+  /attention required!\s*\|\s*cloudflare/i,
   /bad gateway/i,
+  /domain has expired/i,
   /error code 502/i,
+  /error 404\s*\|\s*rawgit\.hack/i,
+  /item is no longer available/i,
   /just a moment/i,
+  /origin is unreachable/i,
+  /performing security verification/i,
+  /related searches/i,
+  /resources and information/i,
   /ng guard/i,
   /page not found/i,
+  /page could not be found/i,
   /site not found/i,
+  /sorry,\s*you have been blocked/i,
+  /something is wrong\.\s*that'?s all we know/i,
   /there isn't a github pages site here/i,
   /unable to fetch bare meta/i,
   /missing[- ]header/i,
@@ -68,8 +81,18 @@ function selectGames(games, options) {
   let selectedGames = games.filter(game => game.link);
   if (options.inputFile) {
     const rawInput = JSON.parse(fs.readFileSync(path.resolve(options.inputFile), "utf8"));
-    const wantedNames = new Set(rawInput.map(entry => (typeof entry === "string" ? entry : entry.name)).filter(Boolean));
-    selectedGames = selectedGames.filter(game => wantedNames.has(game.name));
+    const candidateEntries = rawInput.filter(entry => entry && typeof entry === "object" && typeof entry.link === "string");
+    if (candidateEntries.length > 0) {
+      selectedGames = candidateEntries.map(entry => ({
+        categories: Array.isArray(entry.categories) ? entry.categories : [],
+        link: entry.link,
+        name: entry.name || entry.link,
+        ...(entry.blank !== undefined ? { blank: entry.blank } : {}),
+      }));
+    } else {
+      const wantedNames = new Set(rawInput.map(entry => (typeof entry === "string" ? entry : entry.name)).filter(Boolean));
+      selectedGames = selectedGames.filter(game => wantedNames.has(game.name));
+    }
   }
   if (options.match) {
     selectedGames = selectedGames.filter(game => options.match.test(game.name) || options.match.test(game.link));
@@ -206,8 +229,9 @@ function classifyBrowserResult(result) {
   }
 
   const combinedSummary = [result.summary?.title, result.summary?.textSample, result.summary?.url].filter(Boolean).join("\n");
+  result.matchedError = ERROR_PATTERNS.find(pattern => pattern.test(combinedSummary))?.toString() ?? null;
 
-  if (combinedSummary && ERROR_PATTERNS.some(pattern => pattern.test(combinedSummary))) {
+  if (result.matchedError) {
     return "broken";
   }
   if (result.summary?.url?.startsWith("chrome-error://")) {

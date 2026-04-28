@@ -41,6 +41,8 @@ Notes:
 - `games:audit:network` does a fast whole-catalog sweep and flags dead or suspicious sources.
 - `games:audit:browser` uses a local Chromium-based browser to verify the real proxied launch flow.
 - Browser audit expects the local server to be running first, for example with `pnpm start`.
+- `--input-file` can target either an existing name queue or ad hoc `{ "name", "link" }` candidate records for replacement testing.
+- Keep unresolved-game reports one directory above the repo so they stay local-only and out of Git history.
 - Audit scratch files are ignored by Git so local verification runs do not dirty commits.
 
 ## Deployment

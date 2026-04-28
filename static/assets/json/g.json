@@ -42,14 +42,6 @@
     "blank": "true"
   },
   {
-    "name": "Gartic Phone",
-    "link": "https://garticphone.com",
-    "image": "/assets/media/icons/garticphone.webp",
-    "categories": [
-      "all"
-    ]
-  },
-  {
     "name": "Pranx",
     "link": "https://pranx.com/",
     "image": "/assets/media/icons/pranx.webp",
@@ -150,15 +142,6 @@
     ]
   },
   {
-    "name": "Lostgamer",
-    "link": "https://lostgamer.io",
-    "image": "/assets/media/icons/lostgamerio.webp",
-    "categories": [
-      "all",
-      "2P"
-    ]
-  },
-  {
     "name": "Thisissand",
     "link": "https://thisissand.com/",
     "image": "/assets/media/icons/thisissand.webp",
@@ -236,7 +219,7 @@
   },
   {
     "name": "Brain Test",
-    "link": "https://0322484b-7a58-4454-9667-f805afffded5.poki-gdn.com/2e6b68d3-0f43-4b84-9c14-ab59f94e566c/index.html?country=US&ccpaApplies=0&url_referrer=https%3A%2F%2Fpoki.com%2F&tag=pg-v3.132.1&site_id=3&iso_lang=en&poki_url=https%3A%2F%2Fpoki.com%2Fen%2Fg%2Fbrain-test-tricky-puzzles&gdhoist=yes&nonPersonalized=n&familyFriendly=n&categories=7%2C16%2C37%2C72%2C96%2C400%2C832%2C843%2C1140%2C1150%2C1159&special_condition=landing&game_id=0322484b-7a58-4454-9667-f805afffded5&game_version_id=2e6b68d3-0f43-4b84-9c14-ab59f94e566c",
+    "link": "https://slope-slope.github.io/brain-test-tricky-puzzles/",
     "image": "/assets/media/icons/braintest.webp",
     "categories": [
       "all"
@@ -352,15 +335,6 @@
     ]
   },
   {
-    "name": "Deeeep.io",
-    "link": "https://beta.deeeep.io",
-    "image": "/assets/media/icons/deeeepio.webp",
-    "categories": [
-      "all",
-      "2P"
-    ]
-  },
-  {
     "name": "ev.io",
     "link": "https://ev.io",
     "image": "/assets/media/icons/evio.webp",
@@ -422,7 +396,7 @@
   },
   {
     "name": "Tunnel Rush",
-    "link": "https://5dd2e8e4-015f-11ea-ad56-9cb6d0d995f7.poki-gdn.com/5627efae-e960-407d-82a5-3da708eb4e68/index.html",
+    "link": "https://3kh0s.github.io/games/tunnelrush/index.html",
     "image": "/assets/media/icons/tunnelrush.webp",
     "categories": [
       "all",
@@ -431,7 +405,7 @@
   },
   {
     "name": "Tunnel Rush 2",
-    "link": "https://a7e6d137-c3c1-46e6-a3db-04c2d33c98a8.poki-gdn.com/71e6bddd-9b0e-4621-a11a-9503086f69d5/index.html",
+    "link": "https://new66ez.github.io/tunnel-rush-2.html",
     "image": "/assets/media/icons/tunnelrush2.webp",
     "categories": [
       "all"
@@ -439,7 +413,7 @@
   },
   {
     "name": "Rainbow Obby",
-    "link": "https://785a4295-96c4-43e5-b237-fb07fc3ef44d.poki-gdn.com/f1d39f75-7a25-41de-86cf-ba00804737b5/index.html",
+    "link": "https://genizymath.github.io/games/rainbow-obby/",
     "image": "/assets/media/icons/rainbowobby.webp",
     "categories": [
       "all",
@@ -534,7 +508,7 @@
   },
   {
     "name": "There Is No Game",
-    "link": "https://5dd2d607-015f-11ea-ad56-9cb6d0d995f7.poki-gdn.com/38959ae1-110b-49ab-86ae-df425fd7862a/index.html",
+    "link": "https://3kh0s.github.io/games/thereisnogame/index.html",
     "image": "/assets/media/icons/thereisnogame.webp",
     "categories": [
       "all"
@@ -555,15 +529,6 @@
     "image": "/assets/media/icons/feedvid.webp",
     "categories": [
       "all"
-    ]
-  },
-  {
-    "name": "florr.io",
-    "link": "https://florr.io",
-    "image": "/assets/media/icons/florr.webp",
-    "categories": [
-      "all",
-      "2P"
     ]
   },
   {
@@ -835,7 +800,7 @@
   },
   {
     "name": "DOOM",
-    "link": "https://archive.org/details/doom-play",
+    "link": "https://3kh0s.github.io/games/doom/index.html",
     "image": "/assets/media/icons/DOOM.webp",
     "categories": [
       "all,",
@@ -947,7 +912,7 @@
   },
   {
     "name": "Subway Surfers: San Francisco ",
-    "link": "https://raw.githack.com/3kh0/3kh0-assets/main/subway-surfers/index.html",
+    "link": "https://3kh0s.github.io/games/subwaysurfers/index.html",
     "image": "/assets/media/icons/SF.webp",
     "categories": [
       "all,",
@@ -1227,7 +1192,7 @@
   },
   {
     "name": "Crossy Road",
-    "link": "https://5dd2e1e3-015f-11ea-ad56-9cb6d0d995f7.poki-gdn.com/169dc11d-e718-4b36-9e60-d5ed5bc07a31/index.html",
+    "link": "https://3kh0s.github.io/games/crossy/index.html",
     "image": "/assets/media/icons/cr.webp",
     "categories": [
       "all"
@@ -1300,7 +1265,7 @@
   },
   {
     "name": "Drive Mad",
-    "link": "https://raw.githack.com/3kh0/3kh0-assets/main/drive-mad/index.html",
+    "link": "https://2slope.github.io/play/drive-mad.html",
     "image": "/assets/media/icons/dm.webp",
     "categories": [
       "all"
@@ -1332,7 +1297,7 @@
   },
   {
     "name": "FNF - Lofi Mod",
-    "link": "https://fnf.kdata1.com/lofi-funkin/2/",
+    "link": "https://www.fnfgaming.com/fnf-lofi-unblocked/",
     "image": "/assets/media/icons/lofi.webp",
     "categories": [
       "all"
@@ -1340,7 +1305,7 @@
   },
   {
     "name": "FNF VS. Snorlax",
-    "link": "https://fnf.kdata1.com/snorlax/1/",
+    "link": "https://fnfmod.online/vs-snorlax/",
     "image": "/assets/media/icons/snorlax.webp",
     "categories": [
       "all"
@@ -1372,7 +1337,7 @@
   },
   {
     "name": "G-Switch",
-    "link": "https://5dd24442-015f-11ea-ad56-9cb6d0d995f7.poki-gdn.com/4f2c69b4-3edc-4cd7-a078-efd3d1ea9fb5/index.html",
+    "link": "https://aug66.github.io/g-switch.html",
     "image": "/assets/media/icons/gswitch.webp",
     "categories": [
       "all"
@@ -1380,7 +1345,7 @@
   },
   {
     "name": "G-Switch 2",
-    "link": "https://5dd27095-015f-11ea-ad56-9cb6d0d995f7.poki-gdn.com/e0e70ee4-fdd4-4de8-931d-fde7d1cb408b/index.html",
+    "link": "https://aug66.github.io/g-switch-2.html",
     "image": "/assets/media/icons/gswitch2.webp",
     "categories": [
       "all"
@@ -1388,7 +1353,7 @@
   },
   {
     "name": "G-Switch 3",
-    "link": "https://5dd2b395-015f-11ea-ad56-9cb6d0d995f7.poki-gdn.com/120fdec6-7eeb-470f-a43c-9bcdace0dacb/index.html",
+    "link": "https://aug66.github.io/g-switch-3.html",
     "image": "/assets/media/icons/gswitch3.webp",
     "categories": [
       "all"
@@ -1485,7 +1450,7 @@
   },
   {
     "name": "Sandtrix",
-    "link": "https://files.crazygames.com/sandtrix/16/index.html",
+    "link": "https://3kh0s.github.io/games/sandtrix/index.html",
     "image": "/assets/media/icons/sandtrix.webp",
     "categories": [
       "all"
@@ -1799,7 +1764,7 @@
   },
   {
     "name": "PM: Light Platinum",
-    "link": "https://browncha023.github.io/GBA/launcher.html#pokemonlp",
+    "link": "https://www.snokido.com/game/pokemon-light-platinum",
     "image": "/assets/media/icons/lp.webp",
     "categories": [
       "all"
@@ -1831,7 +1796,7 @@
   },
   {
     "name": "Red Ball 2",
-    "link": "https://www.algebrashelper.com/redball-2",
+    "link": "https://redball5.net/red-ball-2",
     "image": "/assets/media/icons/redball2.webp",
     "categories": [
       "all"
@@ -1847,7 +1812,7 @@
   },
   {
     "name": "Red Ball 4 Vol. 2",
-    "link": "https://www.algebrashelper.com/read-ball-4v2",
+    "link": "https://3kh0s.github.io/games/redballv2/index.html",
     "image": "/assets/media/icons/redball4vol2.webp",
     "categories": [
       "all"
@@ -1958,14 +1923,6 @@
     ]
   },
   {
-    "name": "Space Plan",
-    "link": "https://jhollands.co.uk/spaceplan/",
-    "image": "/assets/media/icons/spaceplan.webp",
-    "categories": [
-      "all"
-    ]
-  },
-  {
     "name": "Stumble Guys",
     "link": "https://www.stumbleguys.com/play",
     "image": "/assets/media/icons/stumble-guys.webp",
@@ -1983,7 +1940,7 @@
   },
   {
     "name": "Sugar Sugar HTML5",
-    "link": "https://66564262-37c6-4095-a731-535342e4bbe4.poki-gdn.com/5bd6e8c6-381d-4de5-9823-96662d29afaf/index.html",
+    "link": "https://www.silvergames.com/en/sugar-sugar",
     "image": "/assets/media/icons/sugarsugar.webp",
     "categories": [
       "all"
@@ -2071,14 +2028,6 @@
     ]
   },
   {
-    "name": "Voxiom.io",
-    "link": "https://voxiom.io/",
-    "image": "/assets/media/icons/voxiom.webp",
-    "categories": [
-      "all"
-    ]
-  },
-  {
     "name": "Zombs.io",
     "link": "https://zombs.io/",
     "image": "/assets/media/icons/zombs-io.webp",
@@ -2154,16 +2103,6 @@
     ]
   },
   {
-    "name": "Fortnite (Now.GG)",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.epicgames.fortnite&partner=interstellar",
-    "image": "/assets/media/icons/fortnite.webp",
-    "categories": [
-      "all",
-      "emu",
-      "android"
-    ]
-  },
-  {
     "name": "EA SPORTS FC™ MOBILE 24 SOCCER",
     "link": "https://now.gg/iframe/snippet?app_pkg=com.ea.gp.fifamobile&partner=interstellar",
     "image": "/assets/media/icons/easports-fcmobile24.webp",
@@ -2215,18 +2154,8 @@
   },
   {
     "name": "Bloons TD Battles",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.ninjakiwi.bloonstdbattles&partner=interstellar",
+    "link": "https://gamevoda.com/play/bloons-battles-online",
     "image": "/assets/media/icons/bloonstd.webp",
-    "categories": [
-      "all",
-      "emu",
-      "android"
-    ]
-  },
-  {
-    "name": "Cookie Run Kingdom",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.devsisters.ck&partner=interstellar",
-    "image": "/assets/media/icons/cookierunkingdom.webp",
     "categories": [
       "all",
       "emu",
@@ -2244,18 +2173,8 @@
     ]
   },
   {
-    "name": "Aptoide",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.aptoide.partners.nowgg.store&partner=interstellar",
-    "image": "/assets/media/icons/aptoide.webp",
-    "categories": [
-      "all",
-      "emu",
-      "android"
-    ]
-  },
-  {
     "name": "Akinator",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.digidust.elokence.akinator.freemium&partner=interstellar",
+    "link": "https://www.silvergames.com/en/akinator",
     "image": "/assets/media/icons/akinator.webp",
     "categories": [
       "all",
@@ -2275,7 +2194,7 @@
   },
   {
     "name": "Toca Life World",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.tocaboca.tocalifeworld&partner=interstellar",
+    "link": "https://www.gamepix.com/play/toca-life-world",
     "image": "/assets/media/icons/tocalifeworld.webp",
     "categories": [
       "all",
@@ -2285,7 +2204,7 @@
   },
   {
     "name": "Toca Hair Salon 4",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.tocaboca.tocahairsalon4&partner=interstellar",
+    "link": "https://8games.net/toca-boca-games/toca-hair-salon-4.html",
     "image": "/assets/media/icons/tocabocahairsalon4.webp",
     "categories": [
       "all",
@@ -2295,7 +2214,7 @@
   },
   {
     "name": "Toca Kitchen 2",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.tocaboca.tocakitchen2&partner=interstellar",
+    "link": "https://www.uptoplay.net/toca-kitchen-2/app.toca.kitchen.2",
     "image": "/assets/media/icons/tocakitchen2.webp",
     "categories": [
       "all",
@@ -2314,29 +2233,9 @@
     ]
   },
   {
-    "name": "Stumble Guys (Android)",
-    "link": "https://now.gg/iframe/snippet?app_pkg=com.kitkagames.fallbuddies&partner=interstellar",
-    "image": "/assets/media/icons/stumble-guys.webp",
-    "categories": [
-      "all",
-      "emu",
-      "android"
-    ]
-  },
-  {
     "name": "Now.GG",
     "link": "https://now.gg",
     "image": "/assets/media/icons/now-gg.webp",
-    "categories": [
-      "all",
-      "emu",
-      "android"
-    ]
-  },
-  {
-    "name": "Roblox (NowGG.me) [Working]",
-    "link": "https://nowgg.me/apps/roblox-corporation/5349/roblox.html",
-    "image": "/assets/media/icons/shuttle.webp",
     "categories": [
       "all",
       "emu",
