@@ -8,13 +8,13 @@
     "custom": "true"
   },
   {
-    "name": "! Interstellar FAQ/Docs",
+    "name": "! Documentation",
     "image": "/assets/media/icons/help_center_googlefonts.png",
-    "link": "https://github.com/UseInterstellar/Interstellar#readme",
     "categories": [
       "all"
     ],
-    "say": "Documentation now points to the repository README."
+    "error": true,
+    "say": "Documentation has not been added yet."
   },
   {
     "name": "! [NEW] Request A Game",
@@ -461,7 +461,7 @@
       "all"
     ],
     "error": "true",
-    "say": "Neal.fun does not work on Interstellar because of Cloudflare protection."
+    "say": "Neal.fun cannot be loaded because of Cloudflare protection."
   },
   {
     "name": "YoHoHo.io",

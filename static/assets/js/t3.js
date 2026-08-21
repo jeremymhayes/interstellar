@@ -323,7 +323,7 @@ function goForward() {
     console.error("No active iframe found");
   }
 }
-// Remove Nav
+// Toggle the tab strip
 document.addEventListener("DOMContentLoaded", () => {
   const tb = document.getElementById("tabs-button");
   const nb = document.getElementById("right-side-nav");
@@ -332,24 +332,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   tb.addEventListener("click", () => {
-    const activeIframe = document.querySelector("#frame-container iframe.active");
-    if (!activeIframe) {
-      return;
-    }
-
-    if (nb.style.display === "none") {
-      nb.style.display = "";
-      activeIframe.style.top = "10%";
-      activeIframe.style.height = "90%";
-      tb.querySelector("i").classList.remove("fa-magnifying-glass-plus");
-      tb.querySelector("i").classList.add("fa-magnifying-glass-minus");
-    } else {
-      nb.style.display = "none";
-      activeIframe.style.top = "5%";
-      activeIframe.style.height = "95%";
-      tb.querySelector("i").classList.remove("fa-magnifying-glass-minus");
-      tb.querySelector("i").classList.add("fa-magnifying-glass-plus");
-    }
+    const tabsAreHidden = document.body.classList.toggle("tabs-hidden");
+    tb.textContent = tabsAreHidden ? "Show tabs" : "Hide tabs";
+    tb.title = tb.textContent;
   });
 });
 if (navigator.userAgent.includes("Chrome") && navigator.keyboard?.lock) {

@@ -38,7 +38,7 @@ function unauthorizedResponse() {
   return new Response("Authentication required", {
     status: 401,
     headers: {
-      "WWW-Authenticate": 'Basic realm="Interstellar"',
+      "WWW-Authenticate": 'Basic realm="Site"',
     },
   });
 }
@@ -152,7 +152,7 @@ function bareManifest() {
     memoryUsage: 0,
     project: {
       description: "Worker-native Bare v1 fetch bridge",
-      name: "interstellar-worker-bare",
+      name: "site-worker-bare",
       version: "1.0.0",
     },
     versions: ["v1", "v3"],

@@ -1,76 +1,31 @@
-// cloak.js
-let appInd;
-const g = window.location.pathname === "/a";
-const a = window.location.pathname === "/b";
-const c = window.location.pathname === "/gt";
+const currentPath = window.location.pathname;
+const isGamesPage = currentPath === "/a" || currentPath === "/play.html";
+const isAppsPage = currentPath === "/b";
 
-let t;
-
+let isInsideTabs = false;
 try {
-  t = window.top.location.pathname === "/d";
+  isInsideTabs = window.top.location.pathname === "/d";
 } catch {
   try {
-    t = window.parent.location.pathname === "/d";
+    isInsideTabs = window.parent.location.pathname === "/d";
   } catch {
-    t = false;
+    isInsideTabs = false;
   }
 }
 
-function Span(name) {
-  return name.split("").map(char => {
-    const span = document.createElement("span");
-    span.textContent = char;
-    return span;
-  });
-}
+const catalogPath = isGamesPage ? "/assets/json/g.min.json" : "/assets/json/a.min.json";
+const pinStorageKey = isGamesPage ? "Gpinned" : isAppsPage ? "Apinned" : "Tpinned";
+const customStorageKey = isGamesPage ? "Gcustom" : isAppsPage ? "Acustom" : "Tcustom";
 
 function saveToLocal(path) {
   sessionStorage.setItem("GoUrl", path);
 }
 
-function handleClick(app) {
-  if (typeof app.say !== "undefined") {
-    alert(app.say);
-  }
-
-  let Selected = app.link;
-  if (app.links && app.links.length > 1) {
-    Selected = getSelected(app.links);
-    if (!Selected) {
-      return false;
-    }
-  }
-
-  if (app.local) {
-    saveToLocal(Selected);
-    window.location.href = "rx";
-    if (t) {
-      window.location.href = Selected;
-    }
-  } else if (app.local2) {
-    saveToLocal(Selected);
-    window.location.href = Selected;
-  } else if (app.blank) {
-    blank(Selected);
-  } else if (app.now) {
-    now(Selected);
-    if (t) {
-      window.location.href = Selected;
-    }
-  } else if (app.custom) {
-    Custom(app);
-  } else if (app.dy) {
-    dy(Selected);
-  } else {
-    go(Selected);
-    if (t) {
-      blank(Selected);
-    }
-  }
-  return false;
-}
-
 function getSelected(links) {
+  if (links.length === 1) {
+    return links[0].url;
+  }
+
   const options = links.map((link, index) => `${index + 1}: ${link.name}`).join("\n");
   const choice = prompt(`Select a link by entering the corresponding number:\n${options}`);
   const selectedIndex = Number.parseInt(choice, 10) - 1;
@@ -83,334 +38,224 @@ function getSelected(links) {
   return links[selectedIndex].url;
 }
 
-function CustomApp(customApp) {
-  let apps;
-  if (g) {
-    apps = localStorage.getItem("Gcustom");
-  } else if (c) {
-    apps = localStorage.getItem("Tcustom");
-  } else if (a) {
-    apps = localStorage.getItem("Acustom");
+function handleClick(app) {
+  if (app.say) {
+    alert(app.say);
   }
 
-  if (apps === null) {
-    apps = {};
+  if (app.custom) {
+    createCustomApp();
+    return;
+  }
+
+  let selected = app.link;
+  if (Array.isArray(app.links) && app.links.length > 0) {
+    selected = getSelected(app.links);
+  }
+
+  if (!selected) {
+    return;
+  }
+
+  if (app.local) {
+    saveToLocal(selected);
+    window.location.href = isInsideTabs ? selected : "rx";
+  } else if (app.local2) {
+    saveToLocal(selected);
+    window.location.href = selected;
+  } else if (app.blank) {
+    blank(selected);
+  } else if (app.now && typeof window.now === "function") {
+    window.now(selected);
+    if (isInsideTabs) {
+      window.location.href = selected;
+    }
+  } else if (app.dy) {
+    dy(selected);
   } else {
-    apps = JSON.parse(apps);
+    go(selected);
+    if (isInsideTabs) {
+      blank(selected);
+    }
+  }
+}
+
+function getPinnedIndexes() {
+  const savedPins = localStorage.getItem(pinStorageKey);
+  if (!savedPins) {
+    return [];
   }
 
-  const key = `custom${Object.keys(apps).length + 1}`;
-
-  apps[key] = customApp;
-
-  if (g) {
-    localStorage.setItem("Gcustom", JSON.stringify(apps));
-  } else if (c) {
-    localStorage.setItem("Tcustom", JSON.stringify(apps));
-  } else if (a) {
-    localStorage.setItem("Acustom", JSON.stringify(apps));
-  }
+  return savedPins
+    .split(",")
+    .map(Number)
+    .filter(Number.isInteger);
 }
 
 function setPin(index) {
-  let pins;
-  if (g) {
-    pins = localStorage.getItem("Gpinned");
-  } else if (c) {
-    pins = localStorage.getItem("Tpinned");
-  } else if (a) {
-    pins = localStorage.getItem("Apinned");
-  }
+  const pins = getPinnedIndexes();
+  const existingIndex = pins.indexOf(index);
 
-  if (pins === null || pins === "") {
-    pins = [];
-  } else {
-    pins = pins.split(",").map(Number);
-  }
-  if (pinContains(index, pins)) {
-    const remove = pins.indexOf(index);
-    pins.splice(remove, 1);
+  if (existingIndex >= 0) {
+    pins.splice(existingIndex, 1);
   } else {
     pins.push(index);
   }
-  if (g) {
-    localStorage.setItem("Gpinned", pins);
-  } else if (c) {
-    localStorage.setItem("Tpinned", pins);
-  } else if (a) {
-    localStorage.setItem("Apinned", pins);
-  }
-  location.reload();
+
+  localStorage.setItem(pinStorageKey, pins.join(","));
+  window.location.reload();
 }
 
-function pinContains(i, p) {
-  if (p === "") {
-    return false;
-  }
-  for (const x of p) {
-    if (x === i) {
-      return true;
-    }
-  }
-  return false;
-}
-
-function Custom() {
-  const title = prompt("Enter title for the app:");
-  const link = prompt("Enter link for the app:");
-  if (title && link) {
-    const customApp = {
-      name: `[Custom] ${title}`,
-      link: link,
-      image: "/assets/media/icons/custom.webp",
-      custom: false,
-    };
-
-    CustomApp(customApp);
-    CreateCustomApp(customApp);
+function getStoredCustomApps() {
+  try {
+    return JSON.parse(localStorage.getItem(customStorageKey)) ?? {};
+  } catch {
+    return {};
   }
 }
 
-function CreateCustomApp(customApp) {
-  const columnDiv = document.createElement("div");
-  columnDiv.classList.add("column");
-  columnDiv.setAttribute("data-category", "all");
+function saveCustomApp(customApp) {
+  const apps = getStoredCustomApps();
+  const key = `custom${Object.keys(apps).length + 1}`;
+  apps[key] = customApp;
+  localStorage.setItem(customStorageKey, JSON.stringify(apps));
+}
 
-  const pinIcon = document.createElement("i");
-  pinIcon.classList.add("fa", "fa-map-pin");
-  pinIcon.ariaHidden = true;
+function createCustomApp() {
+  const title = prompt("Enter a title:");
+  const link = prompt("Enter a URL:");
 
-  const btn = document.createElement("button");
-  btn.appendChild(pinIcon);
-  btn.style.float = "right";
-  btn.style.cursor = "pointer";
-  btn.style.backgroundColor = "rgb(45,45,45)";
-  btn.style.borderRadius = "50%";
-  btn.style.borderColor = "transparent";
-  btn.style.color = "white";
-  btn.style.top = "-200px";
-  btn.style.position = "relative";
-  btn.onclick = () => {
-    setPin(appInd);
-  };
-  btn.title = "Pin";
+  if (!title || !link) {
+    return;
+  }
 
-  const linkElem = document.createElement("a");
-  linkElem.onclick = () => {
-    handleClick(customApp);
+  const customApp = {
+    name: `[Custom] ${title}`,
+    link,
+    image: "/assets/media/icons/custom.webp",
   };
 
-  const image = document.createElement("img");
-  image.width = 145;
-  image.height = 145;
-  image.src = customApp.image;
-  image.loading = "lazy";
-
-  const paragraph = document.createElement("p");
-
-  for (const span of Span(customApp.name)) {
-    paragraph.appendChild(span);
-  }
-
-  linkElem.appendChild(image);
-  linkElem.appendChild(paragraph);
-  columnDiv.appendChild(linkElem);
-  columnDiv.appendChild(btn);
-
-  const nonPinnedApps = document.querySelector(".apps");
-  nonPinnedApps.insertBefore(columnDiv, nonPinnedApps.firstChild);
+  saveCustomApp(customApp);
+  document.querySelector(".apps")?.prepend(createCard(customApp));
+  applyFilters();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  let storedApps;
-  if (g) {
-    storedApps = JSON.parse(localStorage.getItem("Gcustom"));
-  } else if (c) {
-    storedApps = JSON.parse(localStorage.getItem("Tcustom"));
-  } else if (a) {
-    storedApps = JSON.parse(localStorage.getItem("Acustom"));
-  }
-  if (storedApps) {
-    for (const app of Object.values(storedApps)) {
-      CreateCustomApp(app);
-    }
-  }
-});
+function createCard(app, index = null) {
+  const card = document.createElement("article");
+  card.className = "column";
+  card.dataset.category = (app.categories ?? ["all"]).join(" ");
+  card.dataset.name = app.name.toLowerCase();
 
-let path = "/assets/json/a.min.json";
-if (g) {
-  path = "/assets/json/g.min.json";
-} else if (c) {
-  path = "/assets/json/t.min.json";
-} else if (a) {
-  path = "/assets/json/a.min.json";
+  if (app.error) {
+    card.dataset.status = "error";
+    app.say ||= "This item is currently unavailable.";
+  } else if (app.load || app.partial) {
+    card.dataset.status = "warning";
+    app.say ||= "This item may load slowly or have limited support.";
+  }
+
+  const openButton = document.createElement("button");
+  openButton.type = "button";
+  openButton.className = "app-button";
+  openButton.addEventListener("click", () => handleClick(app));
+
+  if (app.image) {
+    const image = document.createElement("img");
+    image.src = app.image;
+    image.alt = "";
+    image.loading = "lazy";
+    openButton.appendChild(image);
+  }
+
+  const name = document.createElement("p");
+  name.textContent = app.name;
+  openButton.appendChild(name);
+  card.appendChild(openButton);
+
+  if (Number.isInteger(index) && index !== 0) {
+    const pinButton = document.createElement("button");
+    pinButton.type = "button";
+    pinButton.className = "pin-button";
+    pinButton.textContent = getPinnedIndexes().includes(index) ? "Unpin" : "Pin";
+    pinButton.setAttribute("aria-label", `${pinButton.textContent} ${app.name}`);
+    pinButton.addEventListener("click", () => setPin(index));
+    card.appendChild(pinButton);
+  }
+
+  return card;
 }
-fetch(path)
-  .then(response => {
-    return response.json();
-  })
-  .then(appsList => {
-    appsList.sort((a, b) => {
-      if (a.name.startsWith("[Custom]")) {
-        return -1;
-      }
-      if (b.name.startsWith("[Custom]")) {
-        return 1;
-      }
-      return a.name.localeCompare(b.name);
-    });
-    const nonPinnedApps = document.querySelector(".apps");
-    const pinnedApps = document.querySelector(".pinned");
-    let pinList;
-    if (g) {
-      pinList = localStorage.getItem("Gpinned") || "";
-    } else if (a) {
-      pinList = localStorage.getItem("Apinned") || "";
-    } else if (c) {
-      pinList = localStorage.getItem("Tpinned") || "";
-    }
-    pinList = pinList ? pinList.split(",").map(Number) : [];
-    appInd = 0;
 
-    for (const app of appsList) {
-      if (typeof app.link === "string" && app.link.startsWith("/")) {
-        app.local = true;
-      } else if (app.link && (app.link.includes("now.gg") || app.link.includes("nowgg.me"))) {
-        if (app.partial === null || app.partial === undefined) {
-          app.partial = true;
-          app.say = "Now.gg is currently not working for some users.";
-        }
-      } else if (app.link?.includes("nowgg.nl")) {
-        if (app.error === null || app.error === undefined) {
-          app.error = true;
-          app.say = "NowGG.nl is currently down.";
-        }
-      }
+function applyFilters() {
+  const query = document.getElementById("search")?.value.trim().toLowerCase() ?? "";
+  const selectedCategory = document.getElementById("category")?.value ?? "all";
 
-      const pinNum = appInd;
-
-      const columnDiv = document.createElement("div");
-      columnDiv.classList.add("column");
-      columnDiv.setAttribute("data-category", app.categories.join(" "));
-
-      const pinIcon = document.createElement("i");
-      pinIcon.classList.add("fa", "fa-map-pin");
-      pinIcon.ariaHidden = true;
-
-      const btn = document.createElement("button");
-      btn.appendChild(pinIcon);
-      btn.style.float = "right";
-      btn.style.backgroundColor = "rgb(45,45,45)";
-      btn.style.borderRadius = "50%";
-      btn.style.borderColor = "transparent";
-      btn.style.color = "white";
-      btn.style.top = "-200px";
-      btn.style.position = "relative";
-      btn.onclick = () => {
-        setPin(pinNum);
-      };
-      btn.title = "Pin";
-
-      const link = document.createElement("a");
-
-      link.onclick = () => {
-        handleClick(app);
-      };
-
-      const image = document.createElement("img");
-      image.width = 145;
-      image.height = 145;
-      image.loading = "lazy";
-
-      if (app.image) {
-        image.src = app.image;
-      } else {
-        image.style.display = "none";
-      }
-
-      const paragraph = document.createElement("p");
-
-      for (const span of Span(app.name)) {
-        paragraph.appendChild(span);
-      }
-
-      if (app.error) {
-        paragraph.style.color = "red";
-        if (!app.say) {
-          app.say = "This app is currently not working.";
-        }
-      } else if (app.load) {
-        paragraph.style.color = "yellow";
-        if (!app.say) {
-          app.say = "This app may experience excessive loading times.";
-        }
-      } else if (app.partial) {
-        paragraph.style.color = "yellow";
-        if (!app.say) {
-          app.say = "This app is currently experiencing some issues, it may not work for you. (Dynamic doesn't work in about:blank)";
-        }
-      }
-
-      link.appendChild(image);
-      link.appendChild(paragraph);
-      columnDiv.appendChild(link);
-
-      if (appInd !== 0) {
-        columnDiv.appendChild(btn);
-      }
-
-      if (pinList != null && appInd !== 0) {
-        if (pinContains(appInd, pinList)) {
-          pinnedApps.appendChild(columnDiv);
-        } else {
-          nonPinnedApps.appendChild(columnDiv);
-        }
-      } else {
-        nonPinnedApps.appendChild(columnDiv);
-      }
-      appInd += 1;
-    }
-
-    const appsContainer = document.getElementById("apps-container");
-    if (appsContainer) {
-      appsContainer.appendChild(pinnedApps);
-      appsContainer.appendChild(nonPinnedApps);
-    }
-  })
-  .catch(error => {
-    console.error("Error fetching JSON data:", error);
-  });
-
-function category() {
-  const selectedCategories = Array.from(document.querySelectorAll("#category option:checked")).map(option => option.value);
-  const g = document.getElementsByClassName("column");
-
-  for (const game of g) {
-    const categories = game.getAttribute("data-category").split(" ");
-
-    if (selectedCategories.length === 0 || selectedCategories.some(category => categories.includes(category))) {
-      game.style.display = "block";
-    } else {
-      game.style.display = "none";
-    }
+  for (const card of document.querySelectorAll(".column")) {
+    const categories = card.dataset.category.split(" ");
+    const matchesQuery = card.dataset.name.includes(query);
+    const matchesCategory = selectedCategory === "all" || categories.includes(selectedCategory);
+    card.hidden = !(matchesQuery && matchesCategory);
   }
 }
 
 function bar() {
-  const input = document.getElementById("search");
-  const filter = input.value.toLowerCase();
-  const g = document.getElementsByClassName("column");
+  applyFilters();
+}
 
-  for (const game of g) {
-    const name = game.getElementsByTagName("p")[0].textContent.toLowerCase();
+function category() {
+  applyFilters();
+}
 
-    if (name.includes(filter)) {
-      game.style.display = "block";
-    } else {
-      game.style.display = "none";
+async function loadCatalog() {
+  const appsContainer = document.querySelector(".apps");
+  const pinnedContainer = document.querySelector(".pinned");
+  if (!appsContainer || !pinnedContainer) {
+    return;
+  }
+
+  for (const app of Object.values(getStoredCustomApps())) {
+    appsContainer.appendChild(createCard(app));
+  }
+
+  try {
+    const response = await fetch(catalogPath);
+    if (!response.ok) {
+      throw new Error(`Catalog request failed with status ${response.status}`);
     }
+
+    const catalog = await response.json();
+    catalog.sort((first, second) => first.name.localeCompare(second.name));
+    const pinnedIndexes = getPinnedIndexes();
+
+    catalog.forEach((app, index) => {
+      if (typeof app.link === "string" && app.link.startsWith("/")) {
+        app.local = true;
+      } else if (app.link?.includes("now.gg") || app.link?.includes("nowgg.me")) {
+        app.partial ??= true;
+        app.say ??= "This item is not available for every user.";
+      } else if (app.link?.includes("nowgg.nl")) {
+        app.error ??= true;
+        app.say ??= "This item is currently unavailable.";
+      }
+
+      const card = createCard(app, index);
+      if (index !== 0 && pinnedIndexes.includes(index)) {
+        pinnedContainer.appendChild(card);
+      } else {
+        appsContainer.appendChild(card);
+      }
+    });
+
+    applyFilters();
+  } catch (error) {
+    console.error("Unable to load catalog:", error);
+    const message = document.createElement("p");
+    message.className = "muted";
+    message.textContent = "The catalog could not be loaded.";
+    appsContainer.appendChild(message);
   }
 }
+
+document.addEventListener("DOMContentLoaded", loadCatalog);
 
 Object.assign(window, {
   bar,
