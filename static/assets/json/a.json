@@ -6,10 +6,11 @@
     "custom": "true"
   },
   {
-    "name": "! Interstellar FAQ/Docs",
+    "name": "! Documentation",
     "image": "/assets/media/icons/help_center_googlefonts.png",
-    "link": "https://docs.gointerstellar.app",
-    "categories": ["all"]
+    "categories": ["all"],
+    "error": true,
+    "say": "Documentation has not been added yet."
   },
   {
     "name": "! [NEW] Request An App",

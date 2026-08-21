@@ -12,65 +12,25 @@ try {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Blocked Hostnames Check
-  const blockedHostnames = ["gointerstellar.app"];
-
-  if (!blockedHostnames.includes(window.location.hostname)) {
-    const script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = "//nightsclotheshazardous.com/1c/c3/8a/1cc38a6899fdf8ba4dfe779bcc54627b.js";
-    document.body.appendChild(script);
-  }
-
   const nav = document.querySelector(".f-nav");
 
   if (nav) {
-    const themeId = localStorage.getItem("theme");
-    let LogoUrl = "/assets/media/favicon/main.png";
-    if (themeId === "Inverted") {
-      LogoUrl = "/assets/media/favicon/main-inverted.png";
-    }
     const html = `
-      <div id="icon-container">
-        <a class="icon" href="/./"><img alt="nav" id="INImg" src="${LogoUrl}"/></a>
-      </div>
-      <div class="f-nav-right">
-        <a class="navbar-link" href="/./a"><i class="fa-solid fa-gamepad navbar-icon"></i><span>&#71;&#97;</span><span>&#109;&#101;&#115;</span></a>
-        <a class="navbar-link" href="/./b"><i class="fa-solid fa-phone navbar-icon"></i><span>&#65;&#112;</span><span>&#112;&#115;</span></a>
-        ${qp ? "" : '<a class="navbar-link" href="/./d"><i class="fa-solid fa-laptop navbar-icon"></i><span>&#84;&#97;</span><span>&#98;&#115;</span></a>'}
-        <a class="navbar-link" href="/./c"><i class="fa-solid fa-gear navbar-icon settings-icon"></i><span>&#83;&#101;&#116;</span><span>&#116;&#105;&#110;&#103;</span></a>
-      </div>`;
+      <nav aria-label="Primary navigation">
+        <a class="home-link" href="/">Home</a>
+        <div class="f-nav-right">
+          <a href="/a">Games</a>
+          <a href="/b">Apps</a>
+          ${qp ? "" : '<a href="/d">Browser</a>'}
+          <a href="/c">Settings</a>
+        </div>
+      </nav>`;
     nav.innerHTML = html;
   }
 
   // LocalStorage Setup for 'dy'
   if (localStorage.getItem("dy") === null || localStorage.getItem("dy") === undefined) {
     localStorage.setItem("dy", "false");
-  }
-
-  // Theme Logic
-  const themeid = localStorage.getItem("theme");
-  const themeEle = document.createElement("link");
-  themeEle.rel = "stylesheet";
-  const themes = {
-    catppuccinMocha: "/assets/css/themes/catppuccin/mocha.css?v=00",
-    catppuccinMacchiato: "/assets/css/themes/catppuccin/macchiato.css?v=00",
-    catppuccinFrappe: "/assets/css/themes/catppuccin/frappe.css?v=00",
-    catppuccinLatte: "/assets/css/themes/catppuccin/latte.css?v=00",
-    Inverted: "/assets/css/themes/colors/inverted.css?v=00",
-    sky: "/assets/css/themes/colors/sky.css?v=00",
-  };
-
-  if (themes[themeid]) {
-    themeEle.href = themes[themeid];
-    document.body.appendChild(themeEle);
-  } else if (themeid) {
-    const customTheme = localStorage.getItem(`theme-${themeid}`);
-    if (customTheme) {
-      const customThemeEle = document.createElement("style");
-      customThemeEle.textContent = customTheme;
-      document.head.appendChild(customThemeEle);
-    }
   }
 
   // Favicon and Name Logic
@@ -302,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Event Key Logic
-  let eventKey = ["Ctrl", "E"];
+  let eventKey = ["Control", "e"];
   try {
     const storedEventKey = JSON.parse(localStorage.getItem("eventKey"));
     if (Array.isArray(storedEventKey) && storedEventKey.length > 0) {
@@ -312,11 +272,13 @@ document.addEventListener("DOMContentLoaded", () => {
     eventKey = [localStorage.getItem("eventKey") || "`"];
   }
 
+  eventKey = eventKey.map(key => key.toLowerCase());
+
   const pLink = localStorage.getItem("pLink") || "https://classroom.google.com/";
   let pressedKeys = [];
 
   document.addEventListener("keydown", event => {
-    pressedKeys.push(event.key);
+    pressedKeys.push(event.key.toLowerCase());
     if (pressedKeys.length > eventKey.length) {
       pressedKeys.shift();
     }
@@ -325,10 +287,4 @@ document.addEventListener("DOMContentLoaded", () => {
       pressedKeys = [];
     }
   });
-
-  // Background Image Logic
-  const savedBackgroundImage = localStorage.getItem("backgroundImage");
-  if (savedBackgroundImage) {
-    document.body.style.backgroundImage = `url('${savedBackgroundImage}')`;
-  }
 });

@@ -1,38 +1,31 @@
 <!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="referrer" content="no-referrer" />
-  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" id="tab-favicon" href="favicon.png" />
-  <title id="t">Home</title>
-  <link rel="stylesheet" href="/assets/css/global.css?v=6" />
-  <link rel="stylesheet" href="/assets/css/h.css?v=01" />
-  <link rel="stylesheet" href="/assets/css/nav.css?v=01" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-
-<body class="center">
-  <div class="f-nav"></div>
-  <div id="particles-js">
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <div class="main">
-      <h1 class="title">&#73;&#110;&#116;&#101;&#114;&#115;&#116;&#101;&#108;&#108;&#97;&#114;</h1>
-      <p id="splash"></p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="referrer" content="no-referrer" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" id="tab-favicon" href="data:," />
+    <title id="t">Home</title>
+    <link rel="stylesheet" href="/assets/css/global.css?v=7" />
+    <link rel="stylesheet" href="/assets/css/h.css?v=2" />
+    <link rel="stylesheet" href="/assets/css/nav.css?v=2" />
+  </head>
+  <body>
+    <div class="f-nav"></div>
+    <main class="home-shell">
+      <h1 class="sr-only">Search</h1>
       <div class="search-container">
-        <form id="fv" method="POST">
-          <input id="input" class="truncate" placeholder="Search or enter a URL" type="text" />
+        <form id="fv" method="post" role="search">
+          <label class="sr-only" for="input">Search or enter a URL</label>
+          <input id="input" placeholder="Search or enter a URL" type="text" autocomplete="off" autofocus />
         </form>
       </div>
-    </div>
-  </div>
-  <script src="assets/js/index-3.js"></script>
-  <script src="/assets/js/h1.js"></script>
-  <script src="./assets/mathematics/bundle.js?v=2025-04-15"></script>
-  <script src="./assets/mathematics/config.js?v=2025-04-15"></script>
-  <script src="/assets/js/m1.js"></script>
-</body>
-
+    </main>
+    <script src="/assets/mathematics/bundle.js?v=2025-04-15"></script>
+    <script src="/assets/mathematics/config.js?v=2025-04-15"></script>
+    <script src="/assets/js/index-3.js"></script>
+    <script src="/assets/js/h1.js"></script>
+    <script src="/assets/js/m1.js"></script>
+  </body>
 </html>
